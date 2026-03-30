@@ -55,4 +55,5 @@ body {
   background: var(--l-bg-white);
   color: var(--l-text-main);
   font-family: var(--l-font-family);
+  font-variant-numeric: lining-nums proportional-nums;
 }

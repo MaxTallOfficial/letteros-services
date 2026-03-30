@@ -3,29 +3,295 @@ import { Header } from "@/src/components/shared/Header";
 import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
-import { colors } from "@/tokens";
+import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
+import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
-  title: "Шорткод — Letteros",
-  description: "Сервис шорткода Letteros — скоро.",
+  title: "Сжатие кода — Letteros Code Compressor",
+  description:
+    "Бесплатный онлайн-сервис минификации HTML, CSS и JavaScript без регистрации. Код обрабатывается прямо в браузере — ничего не отправляется на сервер.",
+  openGraph: {
+    title: "Letteros Code Compressor — сжимайте HTML, CSS и JS бесплатно",
+    description:
+      "Минификация кода прямо в браузере. Поддержка HTML, CSS и JavaScript с подсветкой синтаксиса.",
+    type: "website",
+  },
 };
+
+const sectionStyle = { paddingBottom: "100px" };
+
+const featureCards = [
+  {
+    title: "Бесплатно",
+    text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов на количество запросов.",
+  },
+  {
+    title: "Без сервера",
+    text: "Весь код обрабатывается прямо в браузере. Ваш код никуда не отправляется.",
+  },
+  {
+    title: "HTML, CSS и JS",
+    text: "Поддержка трёх языков в\u00a0одном инструменте. Переключайтесь между вкладками\u00a0— состояние сохраняется.",
+  },
+  {
+    title: "Подсветка синтаксиса",
+    text: "Оба поля\u00a0— исходный код и\u00a0результат\u00a0— отображаются с\u00a0подсветкой синтаксиса для удобной работы.",
+  },
+  {
+    title: "Статистика сжатия",
+    text: "После минификации видите размер до\u00a0и\u00a0после, а\u00a0также процент уменьшения кода.",
+  },
+  {
+    title: "Без регистрации",
+    text: "Просто откройте страницу и начните работу. Никаких аккаунтов и подписок.",
+  },
+];
+
+const howsSteps = [
+  {
+    num: "01",
+    title: "Выберите тип кода",
+    text: "Нажмите на\u00a0вкладку HTML, CSS или\u00a0JS\u00a0— в\u00a0зависимости от того, что хотите сжать.",
+  },
+  {
+    num: "02",
+    title: "Вставьте код",
+    text: "Вставьте код вручную или нажмите «Вставить из буфера»\u00a0— содержимое буфера обмена попадёт в\u00a0поле ввода.",
+  },
+  {
+    num: "03",
+    title: "Нажмите «Сжать»",
+    text: "Инструмент удалит лишние пробелы, переносы строк и\u00a0комментарии, сократит значения и объединит селекторы.",
+  },
+  {
+    num: "04",
+    title: "Скопируйте результат",
+    text: "Нажмите «Копировать»\u00a0— минифицированный код окажется в\u00a0буфере обмена, готовый к\u00a0использованию.",
+  },
+];
+
+const audienceCards = [
+  {
+    title: "Верстальщики и фронтенд-разработчики",
+    text: "Быстро минифицируйте HTML, CSS и\u00a0JS перед деплоем без настройки сборщиков.",
+  },
+  {
+    title: "Email-маркетологи",
+    text: "Сжимайте HTML-письма перед отправкой\u00a0— меньше код, быстрее загрузка, меньше проблем с\u00a0почтовыми клиентами.",
+  },
+  {
+    title: "Разработчики без сборки",
+    text: "Если в\u00a0проекте нет Webpack или Vite\u00a0— используйте этот инструмент для ручной минификации файлов.",
+  },
+  {
+    title: "Все, кто работает с кодом",
+    text: "Дизайнеры, технические писатели, контент-менеджеры\u00a0— быстро обработайте кодовый сниппет без лишних инструментов.",
+  },
+];
 
 export default function ShortcodePage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: "50px", minHeight: "60vh", display: "flex", alignItems: "center" }}>
-        <Container>
-          <div style={{ textAlign: "center", padding: "100px 20px" }}>
-            <Typography level="h2Sections" color={colors.text.main} style={{ marginBottom: "20px" }}>
-              Шорткод
+
+      <main style={{ paddingTop: "50px" }}>
+        {/* Hero */}
+        <section
+          style={{
+            background: colors.surface.dark,
+            paddingTop: "80px",
+            paddingBottom: "80px",
+          }}
+          aria-label="Инструмент минификации кода"
+        >
+          <Container>
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
+              <Typography
+                level="h1Hero"
+                color={colors.text.white}
+                style={{ marginBottom: "20px" }}
+              >
+                Сжатие кода онлайн
+              </Typography>
+              <Typography
+                level="body"
+                as="p"
+                color="rgba(255,255,255,0.7)"
+                style={{ maxWidth: "480px", margin: "0 auto" }}
+              >
+                Минификация HTML, CSS и\u00a0JS прямо в\u00a0браузере. Бесплатно, без регистрации, код никуда не\u00a0отправляется.
+              </Typography>
+            </div>
+
+            <CompressorTool />
+          </Container>
+        </section>
+
+        {/* About */}
+        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="О сервисе">
+          <Container>
+            <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
+              <Typography
+                level="h2Sections"
+                color={colors.text.main}
+                style={{ marginBottom: "32px" }}
+              >
+                Что это за сервис
+              </Typography>
+              <Typography level="body" as="p" color={colors.text.main}>
+                Letteros Code Compressor\u00a0— бесплатный инструмент для минификации HTML, CSS и\u00a0JavaScript.
+                Вставьте исходный код в\u00a0поле ввода, нажмите «Сжать»\u00a0— и\u00a0получите компактную версию без лишних
+                пробелов, переносов и комментариев.
+              </Typography>
+              <Typography
+                level="body"
+                as="p"
+                color={colors.text.main}
+                style={{ marginTop: "20px" }}
+              >
+                Вся обработка происходит в\u00a0браузере\u00a0— ваш код не\u00a0передаётся на\u00a0сервер и\u00a0никуда не\u00a0сохраняется.
+                Инструмент поддерживает три вкладки (HTML, CSS, JS) с\u00a0независимым состоянием каждой и\u00a0отображает
+                статистику сжатия: размер до\u00a0и\u00a0после, процент уменьшения.
+              </Typography>
+            </div>
+          </Container>
+        </section>
+
+        {/* Audience */}
+        <section
+          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
+          aria-label="Для кого"
+        >
+          <Container>
+            <Typography
+              level="h2Sections"
+              color={colors.text.main}
+              style={{ marginBottom: "48px", textAlign: "center" }}
+            >
+              Для кого
             </Typography>
-            <Typography level="body" as="p" color={colors.text.placeholder}>
-              Страница в разработке. Скоро здесь появится новый сервис.
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: "30px",
+              }}
+            >
+              {audienceCards.map((card) => (
+                <div
+                  key={card.title}
+                  style={{
+                    background: colors.bg.white,
+                    borderRadius: "20px",
+                    boxShadow: shadows.cardSoft,
+                    padding: "40px",
+                  }}
+                >
+                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
+                    {card.title}
+                  </Typography>
+                  <Typography level="body" as="p" color={colors.text.main}>
+                    {card.text}
+                  </Typography>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        {/* How it works */}
+        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="Как это работает">
+          <Container>
+            <Typography
+              level="h2Sections"
+              color={colors.text.main}
+              style={{ marginBottom: "48px", textAlign: "center" }}
+            >
+              Как это работает
             </Typography>
-          </div>
-        </Container>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+                gap: "30px",
+              }}
+            >
+              {howsSteps.map((step) => (
+                <div
+                  key={step.num}
+                  style={{
+                    background: colors.bg.white,
+                    borderRadius: "20px",
+                    boxShadow: shadows.cardSoft,
+                    padding: "40px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "36px",
+                      fontWeight: 700,
+                      color: colors.accent.blue,
+                      marginBottom: "16px",
+                      fontFamily: "var(--l-font-family)",
+                    }}
+                  >
+                    {step.num}
+                  </div>
+                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "12px" }}>
+                    {step.title}
+                  </Typography>
+                  <Typography level="body" as="p" color={colors.text.main}>
+                    {step.text}
+                  </Typography>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        {/* Why Letteros */}
+        <section
+          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
+          aria-label="Почему Letteros"
+        >
+          <Container>
+            <Typography
+              level="h2Sections"
+              color={colors.text.main}
+              style={{ marginBottom: "48px", textAlign: "center" }}
+            >
+              Почему Letteros
+            </Typography>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: "30px",
+              }}
+            >
+              {featureCards.map((card) => (
+                <div
+                  key={card.title}
+                  style={{
+                    background: colors.bg.white,
+                    borderRadius: "20px",
+                    boxShadow: shadows.cardSoft,
+                    padding: "40px",
+                  }}
+                >
+                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
+                    {card.title}
+                  </Typography>
+                  <Typography level="body" as="p" color={colors.text.main}>
+                    {card.text}
+                  </Typography>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
       </main>
+
       <Footer />
     </>
   );

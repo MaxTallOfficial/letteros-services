@@ -230,8 +230,8 @@ export function ShortenForm() {
               height: "36px",
               padding: "0 16px",
               borderRadius: "10px",
-              border: `1px solid ${colors.border.default}`,
-              background: copied ? colors.surface.dark : colors.bg.white,
+              border: "none",
+              background: copied ? colors.surface.dark : "rgba(0,0,0,0.06)",
               color: copied ? colors.text.white : colors.text.main,
               fontSize: "14px",
               fontWeight: 600,
@@ -239,6 +239,18 @@ export function ShortenForm() {
               transition: "all 0.25s",
               fontFamily: "var(--l-font-family)",
               whiteSpace: "nowrap",
+            }}
+            onMouseEnter={(e) => {
+              if (!copied) {
+                e.currentTarget.style.background = colors.surface.dark;
+                e.currentTarget.style.color = colors.text.white;
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!copied) {
+                e.currentTarget.style.background = "rgba(0,0,0,0.06)";
+                e.currentTarget.style.color = colors.text.main;
+              }
             }}
           >
             {copied ? "Скопировано!" : "Копировать"}
@@ -323,10 +335,10 @@ export function ShortenForm() {
         <div style={{ marginBottom: "20px", position: "relative" }}>
           <FormInput
             type="text"
-            placeholder="Кастомный слаг (опционально)"
+            placeholder="Уникальный адрес (опционально)"
             value={customSlug}
             onChange={(e) => setCustomSlug(e.target.value)}
-            aria-label="Кастомный слаг"
+            aria-label="Уникальный адрес"
             disabled={loading}
           />
           {customSlug && (

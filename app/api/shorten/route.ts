@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   if (customSlug) {
     if (!/^[a-zA-Z0-9-]{3,30}$/.test(customSlug)) {
       return NextResponse.json(
-        { error: "Кастомный слаг: только латиница, цифры и дефис, длина 3–30 символов" },
+        { error: "Уникальный адрес: только латиница, цифры и дефис, длина 3–30 символов" },
         { status: 400 }
       );
     }
@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
     if (existing.length > 0) {
       const alt = customSlug + "-" + Math.random().toString(36).slice(2, 5);
       return NextResponse.json(
-        { error: `Слаг «${customSlug}» уже занят. Попробуйте «${alt}» или другой вариант.` },
+        { error: `Уникальный адрес «${customSlug}» уже занят. Попробуйте «${alt}» или другой вариант.` },
         { status: 409 }
       );
     }
