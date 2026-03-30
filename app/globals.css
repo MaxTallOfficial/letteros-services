@@ -2,32 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+/* =========================================================================
+   Letteros Design Tokens — CSS-переменные as-is из UIKit
+   ========================================================================= */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root {
+  /* Colors: text */
+  --l-text-main: #151515;
+  --l-text-white: #ffffff;
+  --l-text-placeholder: #A9A9A9;
+  --l-text-inactive: #BDBDBD;
+
+  /* Colors: background */
+  --l-bg-white: #ffffff;
+  --l-bg-alt: #F8F8F8;
+
+  /* Colors: accent */
+  --l-accent-blue: #001DFF;
+  --l-accent-blue-hover: #4B60FF;
+
+  /* Colors: border */
+  --l-border-default: #E1E1E1;
+  --l-border-blog-card: #A9A9A9;
+
+  /* Colors: surface */
+  --l-surface-dark: #151515;
+  --l-surface-active-bg: #F1F1F1;
+
+  /* Colors: misc */
+  --l-green: #2D8962;
+  --l-overlay: rgba(0, 0, 0, 0.2);
+  --l-cookie-bg: #F2F2F2;
+
+  /* Typography */
+  --l-font-family: Raleway, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+
+  /* Shadows */
+  --l-shadow-card-soft: rgba(63,63,63,0.02) 0px 2.12px 5.3px,
+                        rgba(63,63,63,0.03) 0px 10px 20.7px,
+                        rgba(63,63,63,0.05) 0px 26px 65px;
+
+  /* Container */
+  --l-container-max: 1280px;
+  --l-container-padding: 0 20px;
+
+  /* Motion */
+  --l-transition-btn: all 0.25s;
+  --l-transition-input: 0.25s;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  background: var(--l-bg-white);
+  color: var(--l-text-main);
+  font-family: var(--l-font-family);
 }
