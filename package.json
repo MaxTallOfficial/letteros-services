@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
+    "better-sqlite3": "^12.8.0",
     "csso": "^5.0.5",
     "drizzle-orm": "^0.45.1",
     "html-minifier-terser": "^7.2.0",
-    "next": "15.3.0",
+    "next": "^15.5.14",
     "prismjs": "^1.30.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
@@ -23,6 +24,7 @@
     "typograf": "^7.6.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^20",
     "@types/prismjs": "^1.26.6",

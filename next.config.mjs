@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // output: 'export' removed — API Routes require server runtime
+  serverExternalPackages: ["better-sqlite3"],
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // html-minifier-terser uses clean-css which references Node.js 'fs' module.
