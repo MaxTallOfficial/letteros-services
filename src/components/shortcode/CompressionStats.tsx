@@ -9,7 +9,7 @@ export interface Stats {
 }
 
 interface CompressionStatsProps {
-  stats: Stats;
+  stats: Stats | null;
 }
 
 function formatSize(bytes: number): string {
@@ -18,7 +18,7 @@ function formatSize(bytes: number): string {
 }
 
 export function CompressionStats({ stats }: CompressionStatsProps) {
-  const ratio = stats.before > 0
+  const ratio = stats && stats.before > 0
     ? Math.round((1 - stats.after / stats.before) * 100)
     : 0;
 
@@ -49,23 +49,21 @@ export function CompressionStats({ stats }: CompressionStatsProps) {
     fontWeight: 700,
   };
 
+  const dash = <span style={{ ...valueStyle, color: colors.text.placeholder, fontWeight: 400 }}>—</span>;
+
   return (
     <div style={wrapperStyle}>
       <span>
         <span style={labelStyle}>До:</span>
-        <span style={valueStyle}>
-          {stats.before.toLocaleString("ru")} символов ({formatSize(stats.before)})
-        </span>
+        {stats ? <span style={valueStyle}>{stats.before.toLocaleString("ru")} символов ({formatSize(stats.before)})</span> : dash}
       </span>
       <span>
         <span style={labelStyle}>После:</span>
-        <span style={valueStyle}>
-          {stats.after.toLocaleString("ru")} символов ({formatSize(stats.after)})
-        </span>
+        {stats ? <span style={valueStyle}>{stats.after.toLocaleString("ru")} символов ({formatSize(stats.after)})</span> : dash}
       </span>
       <span>
         <span style={labelStyle}>Сжатие:</span>
-        <span style={ratioStyle}>{ratio}%</span>
+        {stats ? <span style={ratioStyle}>{ratio}%</span> : dash}
       </span>
     </div>
   );

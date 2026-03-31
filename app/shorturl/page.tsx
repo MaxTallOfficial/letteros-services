@@ -121,7 +121,7 @@ export default function ShortUrlPage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Без регистрации. Уникальные адреса, QR-код, проверка URL\u00a0— всё в одном месте.
+                Без регистрации. Уникальные адреса, QR-код, проверка URL{"\u00a0"}— всё в одном месте.
               </Typography>
             </div>
 
@@ -141,7 +141,7 @@ export default function ShortUrlPage() {
                 Что это за сервис
               </Typography>
               <Typography level="body" as="p" color={colors.text.main}>
-                Letteros Short URL\u00a0— бесплатный инструмент для сокращения ссылок. Вставьте любой
+                Letteros Short URL{"\u00a0"}— бесплатный инструмент для сокращения ссылок. Вставьте любой
                 длинный URL, и мы мгновенно создадим короткую ссылку в формате{" "}
                 <span style={{ color: colors.accent.blue, fontWeight: 600 }}>letteros.com/s/…</span>
                 , удобную для публикации и отправки.
@@ -153,7 +153,7 @@ export default function ShortUrlPage() {
                 style={{ marginTop: "20px" }}
               >
                 Никаких аккаунтов, никаких ограничений. Сервис работает анонимно: просто вставьте
-                ссылку\u00a0— и готово. Поддерживаются уникальные адреса, QR-коды и проверка доступности
+                ссылку{"\u00a0"}— и готово. Поддерживаются уникальные адреса, QR-коды и проверка доступности
                 URL до сокращения. Все ссылки действуют 90 дней.
               </Typography>
             </div>

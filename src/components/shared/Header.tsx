@@ -206,7 +206,7 @@ export function Header() {
               label="Сервисы"
               items={[
                 { text: "Сокращение ссылок", href: "/shorturl/" },
-                { text: "Шорткод", href: "/shortcode/" },
+                { text: "Компрессор кода", href: "/shortcode/" },
                 { text: "Типограф", href: "/typograph/" },
               ]}
             />

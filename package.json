@@ -19,7 +19,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-simple-code-editor": "^0.14.1",
-    "terser": "^5.46.1"
+    "terser": "^5.46.1",
+    "typograf": "^7.6.0"
   },
   "devDependencies": {
     "@types/html-minifier-terser": "^7.0.2",

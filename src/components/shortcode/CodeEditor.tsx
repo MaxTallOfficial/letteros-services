@@ -1,6 +1,5 @@
 "use client";
 
-import { CSSProperties } from "react";
 import Editor from "react-simple-code-editor";
 import Prism from "prismjs";
 import "prismjs/components/prism-markup";
@@ -20,28 +19,10 @@ interface CodeEditorProps {
   onChange: (value: string) => void;
   tab: TabId;
   disabled?: boolean;
-  onClear?: () => void;
+  onPaste?: () => void;
 }
 
-/**
- * Редактируемое поле с подсветкой синтаксиса.
- * Использует react-simple-code-editor (прозрачная textarea поверх <pre>) + prismjs.
- * Визуально соответствует FormInput из UIKit (border #E1E1E1, radius 15px).
- */
-export function CodeEditor({ value, onChange, tab, disabled = false, onClear }: CodeEditorProps) {
-  const showClear = !!(value && onClear && !disabled);
-
-  const wrapperStyle: CSSProperties = {
-    border: `1px solid ${colors.border.default}`,
-    borderRadius: "15px",
-    background: colors.bg.white,
-    overflow: "auto",
-    transition: "border-color 0.25s",
-    opacity: disabled ? 0.6 : 1,
-    minHeight: "240px",
-    maxHeight: "400px",
-  };
-
+export function CodeEditor({ value, onChange, tab, disabled = false, onPaste }: CodeEditorProps) {
   return (
     <>
       <style>{`
@@ -61,65 +42,23 @@ export function CodeEditor({ value, onChange, tab, disabled = false, onClear }: 
         .token.unit { color: #d73a49; }
         .token.atrule { color: #e36209; }
       `}</style>
-      <div style={{ position: "relative" }}>
-        <div
-          style={wrapperStyle}
-          onFocus={(e) => {
-            (e.currentTarget as HTMLDivElement).style.borderColor = colors.text.main;
+      <div onPaste={onPaste} style={{ opacity: disabled ? 0.6 : 1 }}>
+        <Editor
+          className="l-code-editor"
+          value={value}
+          onValueChange={disabled ? () => {} : onChange}
+          highlight={(code) => Prism.highlight(code, langMap[tab], tab === "js" ? "javascript" : tab)}
+          padding="18px"
+          placeholder="Вставьте ваш код здесь"
+          style={{
+            fontFamily: "'Fira Code', 'Cascadia Code', 'Consolas', monospace",
+            fontSize: "14px",
+            lineHeight: "1.6",
+            minHeight: "200px",
+            background: "transparent",
           }}
-          onBlur={(e) => {
-            (e.currentTarget as HTMLDivElement).style.borderColor = colors.border.default;
-          }}
-        >
-          <Editor
-            className="l-code-editor"
-            value={value}
-            onValueChange={disabled ? () => {} : onChange}
-            highlight={(code) => Prism.highlight(code, langMap[tab], tab === "js" ? "javascript" : tab)}
-            padding={showClear ? "18px 96px 18px 18px" : "18px"}
-            placeholder="Вставьте ваш код здесь"
-            style={{
-              fontFamily: "'Fira Code', 'Cascadia Code', 'Consolas', monospace",
-              fontSize: "14px",
-              lineHeight: "1.6",
-              minHeight: "240px",
-              background: "transparent",
-            }}
-            disabled={disabled}
-          />
-        </div>
-        {showClear && (
-          <button
-            onClick={onClear}
-            style={{
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              height: "32px",
-              padding: "0 14px",
-              borderRadius: "8px",
-              border: "none",
-              background: "rgba(0,0,0,0.06)",
-              color: colors.text.main,
-              fontSize: "13px",
-              fontWeight: 600,
-              cursor: "pointer",
-              transition: "all 0.25s",
-              fontFamily: "var(--l-font-family)",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = colors.surface.dark;
-              e.currentTarget.style.color = colors.text.white;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(0,0,0,0.06)";
-              e.currentTarget.style.color = colors.text.main;
-            }}
-          >
-            Очистить
-          </button>
-        )}
+          disabled={disabled}
+        />
       </div>
     </>
   );

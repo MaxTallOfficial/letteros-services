@@ -38,7 +38,7 @@ const linkStyle: CSSProperties = {
 const navItems = [
   { label: "Редактор", href: "https://letteros.com/editor/" },
   { label: "Сокращение ссылок", href: "/shorturl/" },
-  { label: "Шорткод", href: "/shortcode/" },
+  { label: "Компрессор кода", href: "/shortcode/" },
   { label: "Типограф", href: "/typograph/" },
   { label: "Шаблоны", href: "https://letteros.com/templates/" },
   { label: "Миграция", href: "https://letteros.com/migration/" },

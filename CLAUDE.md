@@ -6,9 +6,9 @@
 
 | Сервис | Статус | Роут |
 |---|---|---|
-| **shorturl** | В работе | `/shorturl/` |
-| **shortcode** | Ожидает ТЗ | `/shortcode/` |
-| **typograph** | Ожидает ТЗ | `/typograph/` |
+| **shorturl** | Реализован | `/shorturl/` |
+| **shortcode** | Реализован | `/shortcode/` |
+| **typograph** | Реализован | `/typograph/` |
 
 Репозиторий: https://gitlab.letteros.com/maxtall/letteros-sevices
 
@@ -64,20 +64,44 @@
 ### 6. Очистка просроченных ссылок
 Запускается при каждом POST `/api/shorten` — удаляет записи с истёкшим `expiresAt`.
 
+### 7. shortcode и typograph — клиентская автообработка
+Оба сервиса не имеют кнопки «Обработать». Обработка запускается:
+- Мгновенно при вставке (paste event → `isPasteRef = true` → delay=0)
+- С debounce 500мс при ручном вводе
+Минификаторы (html-minifier-terser, csso, terser) lazy-loaded через dynamic import.
+typograf инициализируется как синглтон при первом вызове.
+
+### 8. shortcode и typograph — горизонтальный layout
+Два поля рядом (grid 1fr 1fr) на десктопе, в колонку на мобильном (≤767px).
+Медиазапросы через `<style>` тег с CSS-классом (паттерн из CodeEditor).
+
+### 9. typograf — конфигурация
+`locale: ['ru', 'en-US']`, `ru/optalign/*` отключён (неожиданные тонкие пробелы).
+Все остальные правила — дефолтные.
+Декларация типов: `src/types/typograf.d.ts`.
+
+### 10. font-variant-numeric глобально
+`body { font-variant-numeric: lining-nums proportional-nums; }` в globals.css.
+Raleway по умолчанию использует oldstyle-цифры, которые «прыгают» в строке.
+
+### 11. transparentBlack — без обводки
+В `tokens/index.ts` вариант `transparentBlack` имеет `border: "none"`.
+(Стандартный UIKit имеет рамку, для утилитарных кнопок сервисов убрана.)
+
 ## Структура проекта
 
 ```
 letteros-sevices/
 ├── app/
-│   ├── globals.css              ← --l-* CSS-переменные + Tailwind
+│   ├── globals.css              ← --l-* CSS-переменные + Tailwind + font-variant-numeric
 │   ├── layout.tsx               ← Raleway font, lang="ru"
 │   ├── page.tsx                 ← корневая страница (дефолтный шаблон)
 │   ├── shorturl/
 │   │   └── page.tsx             ← страница сервиса сокращения ссылок
 │   ├── shortcode/
-│   │   └── page.tsx             ← заглушка
+│   │   └── page.tsx             ← страница минификатора кода
 │   ├── typograph/
-│   │   └── page.tsx             ← заглушка
+│   │   └── page.tsx             ← страница типографа
 │   ├── s/[code]/
 │   │   └── route.ts             ← GET: редирект по короткой ссылке
 │   └── api/shorten/
@@ -85,27 +109,42 @@ letteros-sevices/
 ├── src/
 │   ├── components/
 │   │   ├── shared/
-│   │   │   ├── Header.tsx       ← Header as-is из UIKit (+ hamburger)
-│   │   │   ├── Footer.tsx       ← Footer as-is из UIKit
-│   │   │   └── MobileMenu.tsx   ← MobileMenu as-is из UIKit
+│   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   └── MobileMenu.tsx
 │   │   ├── layout/
-│   │   │   └── Container.tsx    ← Container as-is из UIKit
+│   │   │   └── Container.tsx
 │   │   ├── ui/
-│   │   │   ├── Button.tsx       ← Button as-is из UIKit
-│   │   │   ├── Checkbox.tsx     ← Checkbox as-is из UIKit
-│   │   │   ├── FormInput.tsx    ← FormInput as-is из UIKit
-│   │   │   ├── Typography.tsx   ← Typography as-is из UIKit
-│   │   │   └── icons.tsx        ← SVG-иконки as-is из UIKit
-│   │   └── shorturl/
-│   │       └── ShortenForm.tsx  ← форма + результат + QR
+│   │   │   ├── Button.tsx
+│   │   │   ├── Checkbox.tsx
+│   │   │   ├── FormInput.tsx
+│   │   │   ├── Typography.tsx
+│   │   │   └── icons.tsx
+│   │   ├── shorturl/
+│   │   │   └── ShortenForm.tsx  ← форма + результат + QR
+│   │   ├── shortcode/
+│   │   │   ├── CompressorTool.tsx  ← "use client", автообработка, 2-колоночный layout
+│   │   │   ├── TabSwitcher.tsx     ← переключатель HTML/CSS/JS
+│   │   │   ├── CodeEditor.tsx      ← поле ввода с подсветкой (react-simple-code-editor)
+│   │   │   ├── CodeOutput.tsx      ← read-only результат с подсветкой (prismjs)
+│   │   │   ├── CompressionStats.tsx
+│   │   │   └── ActionButtons.tsx   ← (не используется, оставлен)
+│   │   └── typograph/
+│   │       ├── TypographTool.tsx   ← "use client", автообработка, 2-колоночный layout
+│   │       ├── TextInput.tsx       ← styled textarea + кнопка «Очистить»
+│   │       ├── TextOutput.tsx      ← read-only div + кнопка «Копировать»
+│   │       └── ProcessingStats.tsx ← счётчик исправлений
 │   ├── db/
-│   │   └── schema.ts            ← Drizzle schema (таблица links)
-│   └── lib/
-│       └── db.ts                ← Drizzle client + auto-create tables
+│   │   └── schema.ts
+│   ├── lib/
+│   │   └── db.ts
+│   └── types/
+│       ├── csso.d.ts
+│       └── typograf.d.ts
 ├── tokens/
 │   └── index.ts                 ← Design tokens (скопированы из UIKit)
 ├── db/
-│   └── shorturl.db              ← SQLite файл (создаётся автоматически, в .gitignore)
+│   └── shorturl.db              ← SQLite файл (в .gitignore)
 ├── drizzle.config.ts
 ├── CLAUDE.md
 └── ...
@@ -119,8 +158,15 @@ npm run build   # production-сборка
 npm run start   # запуск production-сервера
 ```
 
-## Страницы shorturl
+## Страницы
 
+### shorturl
 - `/shorturl/` — мини-лендинг с формой сокращения и контентными секциями
 - `/s/{code}` — редирект на оригинальный URL (301)
 - `/api/shorten` — POST API создания короткой ссылки
+
+### shortcode
+- `/shortcode/` — минификатор HTML/CSS/JS, два поля рядом, автообработка при вводе
+
+### typograph
+- `/typograph/` — типограф для русского текста, два поля рядом, автообработка при вводе

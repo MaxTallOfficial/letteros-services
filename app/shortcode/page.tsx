@@ -7,11 +7,11 @@ import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
-  title: "Сжатие кода — Letteros Code Compressor",
+  title: "Компрессор кода (HTML, CSS, JS) — Letteros",
   description:
     "Бесплатный онлайн-сервис минификации HTML, CSS и JavaScript без регистрации. Код обрабатывается прямо в браузере — ничего не отправляется на сервер.",
   openGraph: {
-    title: "Letteros Code Compressor — сжимайте HTML, CSS и JS бесплатно",
+    title: "Letteros — компрессор кода HTML, CSS и JS бесплатно",
     description:
       "Минификация кода прямо в браузере. Поддержка HTML, CSS и JavaScript с подсветкой синтаксиса.",
     type: "website",
@@ -111,7 +111,7 @@ export default function ShortcodePage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Сжатие кода онлайн
+                Компрессор кода онлайн
               </Typography>
               <Typography
                 level="body"
@@ -119,7 +119,7 @@ export default function ShortcodePage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Минификация HTML, CSS и\u00a0JS прямо в\u00a0браузере. Бесплатно, без регистрации, код никуда не\u00a0отправляется.
+                Минификация HTML, CSS и{"\u00a0"}JS прямо в{"\u00a0"}браузере. Бесплатно, без регистрации, код никуда не{"\u00a0"}отправляется.
               </Typography>
             </div>
 
@@ -139,8 +139,8 @@ export default function ShortcodePage() {
                 Что это за сервис
               </Typography>
               <Typography level="body" as="p" color={colors.text.main}>
-                Letteros Code Compressor\u00a0— бесплатный инструмент для минификации HTML, CSS и\u00a0JavaScript.
-                Вставьте исходный код в\u00a0поле ввода, нажмите «Сжать»\u00a0— и\u00a0получите компактную версию без лишних
+                Letteros Code Compressor{"\u00a0"}— бесплатный инструмент для минификации HTML, CSS и{"\u00a0"}JavaScript.
+                Вставьте исходный код в{"\u00a0"}поле ввода, нажмите «Сжать»{"\u00a0"}— и{"\u00a0"}получите компактную версию без лишних
                 пробелов, переносов и комментариев.
               </Typography>
               <Typography
@@ -149,9 +149,9 @@ export default function ShortcodePage() {
                 color={colors.text.main}
                 style={{ marginTop: "20px" }}
               >
-                Вся обработка происходит в\u00a0браузере\u00a0— ваш код не\u00a0передаётся на\u00a0сервер и\u00a0никуда не\u00a0сохраняется.
-                Инструмент поддерживает три вкладки (HTML, CSS, JS) с\u00a0независимым состоянием каждой и\u00a0отображает
-                статистику сжатия: размер до\u00a0и\u00a0после, процент уменьшения.
+                Вся обработка происходит в{"\u00a0"}браузере{"\u00a0"}— ваш код не{"\u00a0"}передаётся на{"\u00a0"}сервер и{"\u00a0"}никуда не{"\u00a0"}сохраняется.
+                Инструмент поддерживает три вкладки (HTML, CSS, JS) с{"\u00a0"}независимым состоянием каждой и{"\u00a0"}отображает
+                статистику сжатия: размер до{"\u00a0"}и{"\u00a0"}после, процент уменьшения.
               </Typography>
             </div>
           </Container>

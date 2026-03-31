@@ -104,7 +104,7 @@ export function Footer() {
               <div style={titleStyle}>Бесплатные сервисы</div>
               <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
                 <NavLink href="/shorturl/">Сокращение ссылок</NavLink>
-                <NavLink href="/shortcode/">Шорткод</NavLink>
+                <NavLink href="/shortcode/">Компрессор кода</NavLink>
                 <NavLink href="/typograph/">Типограф</NavLink>
               </ul>
             </div>
