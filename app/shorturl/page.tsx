@@ -246,6 +246,10 @@ export default function ShortUrlPage() {
           aria-label="Возможности сервиса"
         >
           <Container>
+            <style>{`
+              @media (max-width: 900px) { .su-features-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+              @media (max-width: 600px) { .su-features-grid { grid-template-columns: 1fr !important; } }
+            `}</style>
             <Typography
               level="h2Sections"
               color={colors.text.main}
@@ -254,9 +258,10 @@ export default function ShortUrlPage() {
               Возможности сервиса
             </Typography>
             <div
+              className="su-features-grid"
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "30px",
               }}
             >

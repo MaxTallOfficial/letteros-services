@@ -4,17 +4,17 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
-import { IconFree, IconUserCheck, IconCode, IconTextSelect, IconChartDown } from "@/src/components/ui/icons";
+import { IconFree, IconCode, IconShieldCheck, IconChartDown, IconBolt, IconTextSelect } from "@/src/components/ui/icons";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
-  title: "Компрессор кода (HTML, CSS, JS) — Letteros",
+  title: "Letteros Shortcode — компрессор кода",
   description:
-    "Бесплатный онлайн-сервис минификации HTML, CSS и JavaScript без регистрации. Код обрабатывается прямо в браузере — ничего не отправляется на сервер.",
+    "Минифицирует HTML, CSS и\u00a0JS прямо в\u00a0браузере. Код никуда не\u00a0отправляется.",
   openGraph: {
-    title: "Letteros — компрессор кода HTML, CSS и JS бесплатно",
+    title: "Letteros Shortcode — компрессор кода",
     description:
-      "Минификация кода прямо в браузере. Поддержка HTML, CSS и JavaScript с подсветкой синтаксиса.",
+      "Минифицирует HTML, CSS и\u00a0JS прямо в\u00a0браузере. Код никуда не\u00a0отправляется.",
     type: "website",
   },
 };
@@ -23,71 +23,71 @@ const sectionStyle = { paddingBottom: "100px" };
 
 const featureCards = [
   {
-    icon: <IconFree />,
-    title: "Бесплатно",
-    text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов на количество запросов.",
-  },
-  {
     icon: <IconCode />,
-    title: "HTML, CSS и JS",
-    text: "Поддержка трёх языков в\u00a0одном инструменте. Переключайтесь между вкладками\u00a0— состояние сохраняется.",
+    title: "Три языка",
+    text: "HTML, CSS и\u00a0JS в\u00a0одном интерфейсе. Переключение между вкладками не\u00a0сбрасывает содержимое.",
   },
   {
-    icon: <IconTextSelect />,
-    title: "Подсветка синтаксиса",
-    text: "Оба поля\u00a0— исходный код и\u00a0результат\u00a0— отображаются с\u00a0подсветкой синтаксиса для удобной работы.",
+    icon: <IconShieldCheck />,
+    title: "Приватность",
+    text: "Код обрабатывается в\u00a0браузере и\u00a0не\u00a0покидает ваше устройство. Серверных запросов нет.",
   },
   {
     icon: <IconChartDown />,
     title: "Статистика сжатия",
-    text: "После минификации видите размер до\u00a0и\u00a0после, а\u00a0также процент уменьшения кода.",
+    text: "Размер до\u00a0и\u00a0после в\u00a0символах и\u00a0байтах. Процент экономии виден сразу.",
   },
   {
-    icon: <IconUserCheck />,
-    title: "Без регистрации",
-    text: "Просто откройте страницу и начните работу. Никаких аккаунтов и подписок.",
+    icon: <IconBolt />,
+    title: "Автоматическая обработка",
+    text: "Результат появляется при вставке, без нажатия кнопок. При ручном вводе — с\u00a0небольшой задержкой.",
+  },
+  {
+    icon: <IconTextSelect />,
+    title: "Подсветка синтаксиса",
+    text: "Код подсвечивается и\u00a0в\u00a0поле ввода, и\u00a0в\u00a0результате. Язык подсветки переключается вместе с\u00a0вкладкой.",
+  },
+  {
+    icon: <IconFree />,
+    title: "Бесплатно",
+    text: "Без лимитов и\u00a0скрытых условий.",
   },
 ];
 
 const howsSteps = [
   {
     num: "01",
-    title: "Выберите тип кода",
-    text: "Нажмите на\u00a0вкладку HTML, CSS или\u00a0JS\u00a0— в\u00a0зависимости от того, что хотите сжать.",
+    title: "Выберите язык",
+    text: "Переключите вкладку на\u00a0HTML, CSS или JS. Каждая вкладка хранит своё содержимое отдельно.",
   },
   {
     num: "02",
     title: "Вставьте код",
-    text: "Вставьте код вручную или нажмите «Вставить из буфера»\u00a0— содержимое буфера обмена попадёт в\u00a0поле ввода.",
+    text: "Скопируйте фрагмент и\u00a0вставьте в\u00a0левое поле. Сжатый результат появится справа автоматически.",
   },
   {
     num: "03",
-    title: "Нажмите «Сжать»",
-    text: "Инструмент удалит лишние пробелы, переносы строк и\u00a0комментарии, сократит значения и объединит селекторы.",
-  },
-  {
-    num: "04",
     title: "Скопируйте результат",
-    text: "Нажмите «Копировать»\u00a0— минифицированный код окажется в\u00a0буфере обмена, готовый к\u00a0использованию.",
+    text: "Нажмите кнопку копирования в\u00a0поле результата. Статистика покажет, сколько удалось сэкономить.",
   },
 ];
 
 const audienceCards = [
   {
-    title: "Верстальщики и фронтенд-разработчики",
-    text: "Быстро минифицируйте HTML, CSS и\u00a0JS перед деплоем без настройки сборщиков.",
+    title: "Email-верстальщики",
+    text: "HTML-письмо с\u00a0лишними пробелами и\u00a0комментариями весит больше и\u00a0может обрезаться почтовиком. Минификация убирает всё ненужное и\u00a0сохраняет структуру.",
   },
   {
-    title: "Email-маркетологи",
-    text: "Сжимайте HTML-письма перед отправкой\u00a0— меньше код, быстрее загрузка, меньше проблем с\u00a0почтовыми клиентами.",
+    title: "Фронтенд-разработчики",
+    text: "Быстро сжать фрагмент кода перед вставкой в\u00a0продакшен, не\u00a0запуская сборщик. Один таб — один результат.",
   },
   {
-    title: "Разработчики без сборки",
-    text: "Если в\u00a0проекте нет Webpack или Vite\u00a0— используйте этот инструмент для ручной минификации файлов.",
+    title: "Контент-менеджеры",
+    text: "HTML-виджеты, встраиваемые блоки, сторонние скрипты — всё это можно сжать перед добавлением на\u00a0страницу, даже без навыков программирования.",
   },
   {
-    title: "Все, кто работает с кодом",
-    text: "Дизайнеры, технические писатели, контент-менеджеры\u00a0— быстро обработайте кодовый сниппет без лишних инструментов.",
+    title: "Все остальные",
+    text: "Иногда нужно убрать из\u00a0кода лишнее и\u00a0получить чистый минифицированный результат.",
   },
 ];
 
@@ -113,7 +113,7 @@ export default function ShortcodePage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Компрессор кода онлайн
+                Letteros Shortcode
               </Typography>
               <Typography
                 level="body"
@@ -121,41 +121,13 @@ export default function ShortcodePage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Минификация HTML, CSS и{"\u00a0"}JS прямо в{"\u00a0"}браузере. Бесплатно, без регистрации, код никуда не{"\u00a0"}отправляется.
+                Сжимает HTML, CSS и{"\u00a0"}JS до{"\u00a0"}минимального размера.
+                <br />
+                Работает в{"\u00a0"}браузере, код остаётся у{"\u00a0"}вас.
               </Typography>
             </div>
 
             <CompressorTool />
-          </Container>
-        </section>
-
-        {/* About */}
-        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="О сервисе">
-          <Container>
-            <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
-              <Typography
-                level="h2Sections"
-                color={colors.text.main}
-                style={{ marginBottom: "32px" }}
-              >
-                Что это за сервис
-              </Typography>
-              <Typography level="body" as="p" color={colors.text.main}>
-                Letteros Code Compressor{"\u00a0"}— бесплатный инструмент для минификации HTML, CSS и{"\u00a0"}JavaScript.
-                Вставьте исходный код в{"\u00a0"}поле ввода, нажмите «Сжать»{"\u00a0"}— и{"\u00a0"}получите компактную версию без лишних
-                пробелов, переносов и комментариев.
-              </Typography>
-              <Typography
-                level="body"
-                as="p"
-                color={colors.text.main}
-                style={{ marginTop: "20px" }}
-              >
-                Вся обработка происходит в{"\u00a0"}браузере{"\u00a0"}— ваш код не{"\u00a0"}передаётся на{"\u00a0"}сервер и{"\u00a0"}никуда не{"\u00a0"}сохраняется.
-                Инструмент поддерживает три вкладки (HTML, CSS, JS) с{"\u00a0"}независимым состоянием каждой и{"\u00a0"}отображает
-                статистику сжатия: размер до{"\u00a0"}и{"\u00a0"}после, процент уменьшения.
-              </Typography>
-            </div>
           </Container>
         </section>
 
@@ -170,7 +142,7 @@ export default function ShortcodePage() {
               color={colors.text.main}
               style={{ marginBottom: "48px", textAlign: "center" }}
             >
-              Для кого
+              Всем, кто работает с{"\u00a0"}кодом
             </Typography>
             <div
               style={{
@@ -251,23 +223,28 @@ export default function ShortcodePage() {
           </Container>
         </section>
 
-        {/* Why Letteros */}
+        {/* Features */}
         <section
           style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Почему Letteros"
+          aria-label="Возможности сервиса"
         >
           <Container>
+            <style>{`
+              @media (max-width: 900px) { .sc-features-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+              @media (max-width: 600px) { .sc-features-grid { grid-template-columns: 1fr !important; } }
+            `}</style>
             <Typography
               level="h2Sections"
               color={colors.text.main}
               style={{ marginBottom: "48px", textAlign: "center" }}
             >
-              Почему Letteros
+              Возможности сервиса
             </Typography>
             <div
+              className="sc-features-grid"
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "30px",
               }}
             >

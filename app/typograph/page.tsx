@@ -4,17 +4,17 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { TypographTool } from "@/src/components/typograph/TypographTool";
-import { IconFree, IconTypoRules, IconBolt } from "@/src/components/ui/icons";
+import { IconFree, IconShieldCheck, IconBolt, IconQuotes, IconDash, IconNbsp } from "@/src/components/ui/icons";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
-  title: "Типограф онлайн — Letteros Typograph",
+  title: "Letteros Typograph — типограф онлайн",
   description:
-    "Бесплатный онлайн-типограф для русского текста без регистрации. Расставляет «ёлочки», тире, неразрывные пробелы — прямо в браузере, текст никуда не отправляется.",
+    "Расставляет кавычки-ёлочки, тире и\u00a0неразрывные пробелы автоматически. Текст обрабатывается в\u00a0браузере и\u00a0никуда не\u00a0отправляется.",
   openGraph: {
-    title: "Letteros Typograph — типографируйте текст бесплатно",
+    title: "Letteros Typograph — типограф онлайн",
     description:
-      "Автоматическая расстановка кавычек, тире, неразрывных пробелов и спецсимволов. Работает в браузере, без регистрации.",
+      "Расставляет кавычки-ёлочки, тире и\u00a0неразрывные пробелы автоматически. Текст обрабатывается в\u00a0браузере и\u00a0никуда не\u00a0отправляется.",
     type: "website",
   },
 };
@@ -23,19 +23,34 @@ const sectionStyle = { paddingBottom: "100px" };
 
 const featureCards = [
   {
-    icon: <IconFree />,
-    title: "Бесплатно",
-    text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов.",
+    icon: <IconQuotes />,
+    title: "Кавычки-ёлочки",
+    text: 'Прямые кавычки заменяются на\u00a0«ёлочки», вложенные\u00a0— на\u00a0\u201elапки\u201c. Работает и\u00a0для одиночных, и\u00a0для вложенных конструкций.',
   },
   {
-    icon: <IconTypoRules />,
-    title: "Полный набор правил",
-    text: "Кавычки, тире, неразрывные пробелы, спецсимволы, числа\u00a0— всё по правилам русской типографики.",
+    icon: <IconDash />,
+    title: "Тире и\u00a0дефисы",
+    text: "Дефис между словами заменяется на\u00a0длинное тире. Дефисы внутри слов остаются на\u00a0месте.",
+  },
+  {
+    icon: <IconNbsp />,
+    title: "Неразрывные пробелы",
+    text: "Предлоги, союзы и\u00a0инициалы не\u00a0отрываются от\u00a0следующего слова. Висячих предлогов в\u00a0тексте не\u00a0будет.",
+  },
+  {
+    icon: <IconShieldCheck />,
+    title: "Приватность",
+    text: "Текст обрабатывается в\u00a0браузере и\u00a0не\u00a0покидает ваше устройство. Серверных запросов нет.",
   },
   {
     icon: <IconBolt />,
-    title: "Мгновенно",
-    text: "Обработка происходит сразу при вводе\u00a0— результат виден в\u00a0режиме реального времени.",
+    title: "Автоматическая обработка",
+    text: "Результат появляется при вставке, без нажатия кнопок. При ручном вводе — с\u00a0небольшой задержкой.",
+  },
+  {
+    icon: <IconFree />,
+    title: "Бесплатно",
+    text: "Без лимитов и\u00a0скрытых условий.",
   },
 ];
 
@@ -43,36 +58,36 @@ const howsSteps = [
   {
     num: "01",
     title: "Вставьте текст",
-    text: "Вставьте текст в\u00a0левое поле\u00a0— он\u00a0обработается автоматически.",
+    text: "Скопируйте текст из\u00a0любого источника и\u00a0вставьте в\u00a0левое поле. Результат появится справа автоматически.",
   },
   {
     num: "02",
-    title: "Смотрите результат",
-    text: "В\u00a0правом поле сразу появится типографированный текст. Счётчик покажет количество исправлений.",
+    title: "Проверьте изменения",
+    text: "Счётчик исправлений покажет количество замен по\u00a0категориям: кавычки, тире, неразрывные пробелы.",
   },
   {
     num: "03",
-    title: "Скопируйте",
-    text: "Нажмите «Копировать»\u00a0— готовый текст окажется в\u00a0буфере обмена.",
+    title: "Скопируйте результат",
+    text: "Нажмите кнопку копирования и\u00a0вставьте готовый текст туда, где он\u00a0нужен.",
   },
 ];
 
 const audienceCards = [
   {
-    title: "Копирайтеры и редакторы",
-    text: "Приводите тексты к\u00a0профессиональному виду за секунды, не тратя время на ручную правку.",
-  },
-  {
-    title: "Email-маркетологи",
-    text: "Красивая типографика в\u00a0рассылках\u00a0— правильные кавычки, тире и\u00a0пробелы без лишних усилий.",
+    title: "Копирайтеры и\u00a0редакторы",
+    text: "Ручная расстановка кавычек-ёлочек и\u00a0тире отнимает время и\u00a0всё равно пропускает ошибки. Типограф обрабатывает весь текст за\u00a0секунду.",
   },
   {
     title: "Контент-менеджеры",
-    text: "Готовьте тексты для публикации на сайте или в\u00a0соцсетях с\u00a0корректными типографическими знаками.",
+    text: "Текст из\u00a0CMS, из\u00a0писем клиентов или из\u00a0Google Docs приходит с\u00a0прямыми кавычками и\u00a0дефисами вместо тире. Вставить и\u00a0скопировать — быстрее, чем править вручную.",
   },
   {
-    title: "Все, кто работает с текстом",
-    text: "Дизайнеры, технические писатели, разработчики\u00a0— быстро приведите любой текст в\u00a0порядок.",
+    title: "Email-маркетологи",
+    text: "Типографически чистый текст в\u00a0рассылке — признак профессионализма. Разница между дефисом и\u00a0тире видна подписчику, даже если он\u00a0не\u00a0может её назвать.",
+  },
+  {
+    title: "Все остальные",
+    text: "Любой текст, который кто-то будет читать, заслуживает правильных кавычек.",
   },
 ];
 
@@ -98,7 +113,7 @@ export default function TypographPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Типограф онлайн
+                Letteros Typograph
               </Typography>
               <Typography
                 level="body"
@@ -106,37 +121,13 @@ export default function TypographPage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Расставляет «ёлочки», тире и{"\u00a0"}неразрывные пробелы автоматически. Бесплатно, без регистрации, текст никуда не{"\u00a0"}отправляется.
+                Приводит текст в{"\u00a0"}порядок по{"\u00a0"}правилам русской типографики.
+                <br />
+                Кавычки, тире, неразрывные пробелы и{"\u00a0"}спецсимволы.
               </Typography>
             </div>
 
             <TypographTool />
-          </Container>
-        </section>
-
-        {/* About */}
-        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="О сервисе">
-          <Container>
-            <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
-              <Typography
-                level="h2Sections"
-                color={colors.text.main}
-                style={{ marginBottom: "32px" }}
-              >
-                Что это за сервис
-              </Typography>
-              <Typography level="body" as="p" color={colors.text.main}>
-                Letteros Typograph{"\u00a0"}— бесплатный инструмент для автоматического типографирования текста. Он расставляет правильные кавычки-«ёлочки», заменяет дефисы на{"\u00a0"}тире, добавляет неразрывные пробелы перед предлогами и{"\u00a0"}союзами, расставляет знаки ©, ® и{"\u00a0"}™, форматирует числа.
-              </Typography>
-              <Typography
-                level="body"
-                as="p"
-                color={colors.text.main}
-                style={{ marginTop: "20px" }}
-              >
-                Вся обработка происходит прямо в{"\u00a0"}браузере{"\u00a0"}— текст не{"\u00a0"}передаётся на{"\u00a0"}сервер и{"\u00a0"}никуда не{"\u00a0"}сохраняется. Результат появляется мгновенно, по мере ввода.
-              </Typography>
-            </div>
           </Container>
         </section>
 
@@ -151,7 +142,7 @@ export default function TypographPage() {
               color={colors.text.main}
               style={{ marginBottom: "48px", textAlign: "center" }}
             >
-              Для кого
+              Всем, кто работает с{"\u00a0"}текстом
             </Typography>
             <div
               style={{
@@ -232,23 +223,28 @@ export default function TypographPage() {
           </Container>
         </section>
 
-        {/* Why Letteros */}
+        {/* Features */}
         <section
           style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Почему Letteros"
+          aria-label="Возможности сервиса"
         >
           <Container>
+            <style>{`
+              @media (max-width: 900px) { .typo-features-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+              @media (max-width: 600px) { .typo-features-grid { grid-template-columns: 1fr !important; } }
+            `}</style>
             <Typography
               level="h2Sections"
               color={colors.text.main}
               style={{ marginBottom: "48px", textAlign: "center" }}
             >
-              Почему Letteros
+              Возможности сервиса
             </Typography>
             <div
+              className="typo-features-grid"
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "30px",
               }}
             >

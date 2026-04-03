@@ -30,15 +30,15 @@ export function IconQR({ size = 40 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="4" y="4" width="13" height="13" rx="1.5" />
-      <rect x="7" y="7" width="7" height="7" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="8" y="8" width="5" height="5" rx="0.5" />
       <rect x="23" y="4" width="13" height="13" rx="1.5" />
-      <rect x="26" y="7" width="7" height="7" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="27" y="8" width="5" height="5" rx="0.5" />
       <rect x="4" y="23" width="13" height="13" rx="1.5" />
-      <rect x="7" y="26" width="7" height="7" rx="0.5" fill="currentColor" stroke="none" />
-      <rect x="23" y="23" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
-      <rect x="30" y="23" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
-      <rect x="23" y="30" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
-      <rect x="30" y="30" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="8" y="27" width="5" height="5" rx="0.5" />
+      <rect x="23" y="23" width="4" height="4" rx="0.5" />
+      <rect x="30" y="23" width="4" height="4" rx="0.5" />
+      <rect x="23" y="30" width="4" height="4" rx="0.5" />
+      <rect x="30" y="30" width="4" height="4" rx="0.5" />
     </svg>
   );
 }
@@ -117,7 +117,41 @@ export function IconTypoRules({ size = 40 }: { size?: number }) {
 export function IconBolt({ size = 40 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M23 4L10 22h12l-5 14 20-22H25z" />
+      <polyline points="22,4 10,22 20,22 18,36 30,18 20,18 22,4" />
+    </svg>
+  );
+}
+
+export function IconQuotes({ size = 40 }: { size?: number }) {
+  // « » — две ёлочки как угловые скобки
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      {/* левая ёлочка « */}
+      <polyline points="11,12 5,20 11,28" />
+      <polyline points="17,12 11,20 17,28" />
+      {/* правая ёлочка » */}
+      <polyline points="23,12 29,20 23,28" />
+      <polyline points="29,12 35,20 29,28" />
+    </svg>
+  );
+}
+
+export function IconDash({ size = 40 }: { size?: number }) {
+  // длинное тире — как символ, крупно по центру
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <line x1="6" y1="20" x2="34" y2="20" />
+    </svg>
+  );
+}
+
+export function IconNbsp({ size = 40 }: { size?: number }) {
+  // линия — круг — линия (символ соединения)
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+      <line x1="4" y1="20" x2="15" y2="20" />
+      <circle cx="20" cy="20" r="5" />
+      <line x1="25" y1="20" x2="36" y2="20" />
     </svg>
   );
 }
