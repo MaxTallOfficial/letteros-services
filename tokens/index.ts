@@ -188,7 +188,7 @@ export const buttonVariants = {
     hoverBg: "#ffffff", hoverColor: "#151515",
   },
   transparentBlack: {
-    bg: "transparent", color: "#151515", border: "none",
+    bg: "transparent", color: "#151515", border: "1px solid #151515",
     hoverBg: "#151515", hoverColor: "#ffffff",
   },
   transparentWhite: {

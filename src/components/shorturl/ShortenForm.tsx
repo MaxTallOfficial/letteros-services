@@ -311,7 +311,7 @@ export function ShortenForm() {
         )}
 
         <Button variant="transparentBlack" size="m" onClick={handleReset}>
-          Сократить ещё одну ссылку
+          Сократить ещё
         </Button>
       </div>
     );
@@ -379,20 +379,37 @@ export function ShortenForm() {
             <div
               style={{
                 overflow: "hidden",
-                maxHeight: useCustomSlug ? "80px" : "0px",
+                maxHeight: useCustomSlug ? "90px" : "0px",
                 opacity: useCustomSlug ? 1 : 0,
                 transition: "max-height 0.25s ease, opacity 0.2s ease",
                 marginTop: useCustomSlug ? "10px" : "0",
               }}
             >
-              <FormInput
-                type="text"
-                placeholder="Введите окончание ссылки"
-                value={customSlug}
-                onChange={(e) => setCustomSlug(e.target.value)}
-                aria-label="Уникальный адрес"
-                disabled={loading || !useCustomSlug}
-              />
+              <div style={{ position: "relative" }}>
+                <FormInput
+                  type="text"
+                  placeholder="Введите окончание ссылки"
+                  value={customSlug}
+                  onChange={(e) => setCustomSlug(e.target.value)}
+                  aria-label="Уникальный адрес"
+                  disabled={loading || !useCustomSlug}
+                />
+                {customSlug && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      right: "18px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      fontSize: "13px",
+                      color: colors.text.placeholder,
+                      pointerEvents: "none",
+                    }}
+                  >
+                    letteros.com/s/{customSlug}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>

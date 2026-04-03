@@ -4,17 +4,24 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { ShortenForm } from "@/src/components/shorturl/ShortenForm";
-import { IconFree, IconUserCheck, IconQR, IconPencil, IconShieldCheck, IconTimer } from "@/src/components/ui/icons";
+import {
+  IconFree,
+  IconUserCheck,
+  IconQR,
+  IconPencil,
+  IconShieldCheck,
+  IconTimer,
+} from "@/src/components/ui/icons";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
-  title: "Сокращение ссылок — Letteros Short URL",
+  title: "Letteros Short URL — сокращатель ссылок",
   description:
-    "Бесплатный сервис сокращения ссылок без регистрации. Короткие ссылки с уникальным адресом, QR-код — всё в одном месте.",
+    "Короткий адрес, кастомный слаг и\u00a0QR-код за\u00a0одно действие. Работает без регистрации.",
   openGraph: {
-    title: "Letteros Short URL — сокращайте ссылки бесплатно",
+    title: "Letteros Short URL — сокращатель ссылок",
     description:
-      "Сокращайте ссылки без регистрации. Поддержка уникальных адресов, QR-кода и проверки URL.",
+      "Короткий адрес, кастомный слаг и\u00a0QR-код за\u00a0одно действие. Работает без регистрации.",
     type: "website",
   },
 };
@@ -25,76 +32,71 @@ const sectionStyle = {
 
 const featureCards = [
   {
-    icon: <IconFree />,
-    title: "Бесплатно",
-    text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов на количество ссылок.",
-  },
-  {
     icon: <IconUserCheck />,
     title: "Без регистрации",
-    text: "Просто вставьте ссылку и получите короткий URL. Никаких аккаунтов и паролей.",
+    text: "Открываете страницу и\u00a0сразу работаете. Никаких аккаунтов и\u00a0паролей.",
+  },
+  {
+    icon: <IconPencil />,
+    title: "Кастомный слаг",
+    text: "Прописывайте собственное окончание ссылки вместо случайного набора символов.",
   },
   {
     icon: <IconQR />,
     title: "QR-код",
-    text: "Автоматически генерируйте QR-код для любой ссылки и скачивайте его в\u00a0PNG.",
-  },
-  {
-    icon: <IconPencil />,
-    title: "Кастомные ссылки",
-    text: "Выберите свой вариант короткого кода\u00a0— например, letteros.com/s/my-campaign.",
+    text: "Генерируется вместе со\u00a0ссылкой и\u00a0скачивается в\u00a0PNG.",
   },
   {
     icon: <IconShieldCheck />,
     title: "Проверка URL",
-    text: "Перед сокращением сервис проверяет, что ссылка работает и\u00a0возвращает корректный ответ.",
+    text: "Сервис проверяет доступность страницы до\u00a0сокращения ссылки.",
   },
   {
     icon: <IconTimer />,
-    title: "Срок жизни 90 дней",
-    text: "Все ссылки активны 90 дней с\u00a0момента создания. Дата истечения видна сразу.",
+    title: "Срок 90 дней",
+    text: "Дата деактивации видна сразу после создания ссылки.",
+  },
+  {
+    icon: <IconFree />,
+    title: "Бесплатно",
+    text: "Без лимитов и\u00a0скрытых условий.",
   },
 ];
 
 const howsSteps = [
   {
     num: "01",
-    title: "Вставьте ссылку",
-    text: "Скопируйте любой URL и вставьте его в поле ввода.",
+    title: "Вставьте URL",
+    text: "Скопируйте любой адрес и\u00a0вставьте в\u00a0поле\u00a0— страницу, документ, ссылку с\u00a0UTM-параметрами.",
   },
   {
     num: "02",
-    title: "Настройте по желанию",
-    text: "Укажите уникальный адрес или включите генерацию QR-кода\u00a0— это опционально.",
+    title: "Настройте под себя",
+    text: "Задайте свой слаг, включите генерацию QR-кода или отключите проверку доступности, если уверены в\u00a0ссылке.",
   },
   {
     num: "03",
-    title: "Нажмите «Сократить»",
-    text: "Сервис проверит ссылку и мгновенно создаст короткий URL.",
-  },
-  {
-    num: "04",
-    title: "Поделитесь",
-    text: "Скопируйте короткую ссылку одной кнопкой или скачайте QR-код для офлайн-материалов.",
+    title: "Скопируйте результат",
+    text: "Короткая ссылка готова. Копируйте одной кнопкой или скачайте QR-код в\u00a0PNG.",
   },
 ];
 
 const audienceCards = [
   {
     title: "Email-маркетологи",
-    text: "Короткие ссылки лучше читаются в рассылках и не ломают вёрстку. Следите за переходами.",
+    text: "UTM-метки делают ссылку нечитаемой. Короткий адрес выглядит опрятно в\u00a0любом почтовике и\u00a0не\u00a0ломает вёрстку письма.",
   },
   {
     title: "SMM-специалисты",
-    text: "Публикуйте чистые, аккуратные ссылки в постах, историях и био профилей.",
+    text: "В\u00a0описании профиля и\u00a0в\u00a0постах место ограничено. Кастомный слаг делает ссылку узнаваемой даже без контекста.",
   },
   {
-    title: "Владельцы бизнеса",
-    text: "Передавайте ссылки клиентам в удобном виде\u00a0— через мессенджеры, печатные материалы или QR-коды.",
+    title: "Дизайнеры и\u00a0редакторы",
+    text: "Длинный URL в\u00a0макете, презентации или документе\u00a0— визуальный мусор. Короткий адрес не\u00a0отвлекает от\u00a0содержания.",
   },
   {
-    title: "Все, кто работает со ссылками",
-    text: "Журналисты, дизайнеры, разработчики\u00a0— сократите любую длинную ссылку за пару секунд.",
+    title: "Все остальные",
+    text: "Иногда нужно просто отправить ссылку, не\u00a0превращая её в\u00a0абзац.",
   },
 ];
 
@@ -120,7 +122,7 @@ export default function ShortUrlPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Сокращайте ссылки бесплатно
+                Letteros Short URL
               </Typography>
               <Typography
                 level="body"
@@ -128,42 +130,13 @@ export default function ShortUrlPage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Без регистрации. Уникальные адреса, QR-код, проверка URL{"\u00a0"}— всё в одном месте.
+                Превращает любой длинный адрес в{"\u00a0"}короткую ссылку.
+                <br />
+                Кастомный слаг, QR-код и{"\u00a0"}проверка URL.
               </Typography>
             </div>
 
             <ShortenForm />
-          </Container>
-        </section>
-
-        {/* About */}
-        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="О сервисе">
-          <Container>
-            <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
-              <Typography
-                level="h2Sections"
-                color={colors.text.main}
-                style={{ marginBottom: "32px" }}
-              >
-                Что это за сервис
-              </Typography>
-              <Typography level="body" as="p" color={colors.text.main}>
-                Letteros Short URL{"\u00a0"}— бесплатный инструмент для сокращения ссылок. Вставьте любой
-                длинный URL, и мы мгновенно создадим короткую ссылку в формате{" "}
-                <span style={{ color: colors.accent.blue, fontWeight: 600 }}>letteros.com/s/…</span>
-                , удобную для публикации и отправки.
-              </Typography>
-              <Typography
-                level="body"
-                as="p"
-                color={colors.text.main}
-                style={{ marginTop: "20px" }}
-              >
-                Никаких аккаунтов, никаких ограничений. Сервис работает анонимно: просто вставьте
-                ссылку{"\u00a0"}— и готово. Поддерживаются уникальные адреса, QR-коды и проверка доступности
-                URL до сокращения. Все ссылки действуют 90 дней.
-              </Typography>
-            </div>
           </Container>
         </section>
 
@@ -178,7 +151,7 @@ export default function ShortUrlPage() {
               color={colors.text.main}
               style={{ marginBottom: "48px", textAlign: "center" }}
             >
-              Для кого
+              Всем, кто работает со{"\u00a0"}ссылками
             </Typography>
             <div
               style={{
@@ -267,10 +240,10 @@ export default function ShortUrlPage() {
           </Container>
         </section>
 
-        {/* Why Letteros */}
+        {/* Features */}
         <section
           style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Почему Letteros"
+          aria-label="Возможности сервиса"
         >
           <Container>
             <Typography
@@ -278,7 +251,7 @@ export default function ShortUrlPage() {
               color={colors.text.main}
               style={{ marginBottom: "48px", textAlign: "center" }}
             >
-              Почему Letteros
+              Возможности сервиса
             </Typography>
             <div
               style={{
