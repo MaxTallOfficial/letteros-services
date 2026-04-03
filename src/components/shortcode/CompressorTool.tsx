@@ -258,11 +258,12 @@ export function CompressorTool() {
         }
         @media (max-width: 767px) {
           .l-compressor-grid { grid-template-columns: 1fr; }
+          .l-compressor-toolbar { flex-wrap: wrap !important; gap: 10px !important; }
         }
       `}</style>
 
       {/* Tabs + stats */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
+      <div className="l-compressor-toolbar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
         <TabSwitcher active={activeTab} onChange={setActiveTab} />
         <CompressionStats stats={current.stats} />
       </div>

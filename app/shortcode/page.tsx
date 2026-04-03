@@ -4,6 +4,7 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
+import { IconFree, IconUserCheck, IconCode, IconTextSelect, IconChartDown } from "@/src/components/ui/icons";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
@@ -22,26 +23,27 @@ const sectionStyle = { paddingBottom: "100px" };
 
 const featureCards = [
   {
+    icon: <IconFree />,
     title: "Бесплатно",
     text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов на количество запросов.",
   },
   {
-    title: "Без сервера",
-    text: "Весь код обрабатывается прямо в браузере. Ваш код никуда не отправляется.",
-  },
-  {
+    icon: <IconCode />,
     title: "HTML, CSS и JS",
     text: "Поддержка трёх языков в\u00a0одном инструменте. Переключайтесь между вкладками\u00a0— состояние сохраняется.",
   },
   {
+    icon: <IconTextSelect />,
     title: "Подсветка синтаксиса",
     text: "Оба поля\u00a0— исходный код и\u00a0результат\u00a0— отображаются с\u00a0подсветкой синтаксиса для удобной работы.",
   },
   {
+    icon: <IconChartDown />,
     title: "Статистика сжатия",
     text: "После минификации видите размер до\u00a0и\u00a0после, а\u00a0также процент уменьшения кода.",
   },
   {
+    icon: <IconUserCheck />,
     title: "Без регистрации",
     text: "Просто откройте страницу и начните работу. Никаких аккаунтов и подписок.",
   },
@@ -279,6 +281,7 @@ export default function ShortcodePage() {
                     padding: "40px",
                   }}
                 >
+                  <div style={{ marginBottom: "16px", color: colors.text.main }}>{card.icon}</div>
                   <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
                     {card.title}
                   </Typography>

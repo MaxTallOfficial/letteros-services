@@ -75,6 +75,7 @@ function TooltipIcon({ text }: { text: string }) {
 export function ShortenForm() {
   const [url, setUrl] = useState("");
   const [customSlug, setCustomSlug] = useState("");
+  const [useCustomSlug, setUseCustomSlug] = useState(false);
   const [skipCheck, setSkipCheck] = useState(false);
   const [generateQr, setGenerateQr] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -114,7 +115,7 @@ export function ShortenForm() {
           body: JSON.stringify({
             url: url.trim(),
             skipCheck,
-            customSlug: customSlug.trim() || undefined,
+            customSlug: useCustomSlug ? customSlug.trim() || undefined : undefined,
             generateQr,
           }),
         });
@@ -132,7 +133,7 @@ export function ShortenForm() {
         setLoading(false);
       }
     },
-    [url, customSlug, skipCheck, generateQr]
+    [url, customSlug, useCustomSlug, skipCheck, generateQr]
   );
 
   const handleCopy = useCallback(async () => {
@@ -168,6 +169,7 @@ export function ShortenForm() {
     setError(null);
     setUrl("");
     setCustomSlug("");
+    setUseCustomSlug(false);
     setSkipCheck(false);
     setGenerateQr(false);
     setCopied(false);
@@ -320,7 +322,7 @@ export function ShortenForm() {
     <div style={formCardStyle}>
       <form onSubmit={handleSubmit} noValidate>
         {/* URL input */}
-        <div style={{ marginBottom: "12px" }}>
+        <div style={{ marginBottom: "20px" }}>
           <FormInput
             type="url"
             placeholder="Вставьте ссылку"
@@ -331,50 +333,23 @@ export function ShortenForm() {
           />
         </div>
 
-        {/* Custom slug */}
-        <div style={{ marginBottom: "20px", position: "relative" }}>
-          <FormInput
-            type="text"
-            placeholder="Уникальный адрес (опционально)"
-            value={customSlug}
-            onChange={(e) => setCustomSlug(e.target.value)}
-            aria-label="Уникальный адрес"
-            disabled={loading}
-          />
-          {customSlug && (
-            <span
-              style={{
-                position: "absolute",
-                right: "18px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontSize: "13px",
-                color: colors.text.placeholder,
-                pointerEvents: "none",
-              }}
-            >
-              letteros.com/s/{customSlug}
-            </span>
-          )}
-        </div>
-
         {/* Checkboxes */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
-            <Checkbox
-              variant="simple"
-              label={
-                <span style={{ display: "inline-flex", alignItems: "center" }}>
-                  Не проверять ссылку перед сокращением
-                  <TooltipIcon text="По умолчанию URL-адрес будет проверен перед сокращением. Сервер выполнит запрос по URL-адресу и дождётся корректного ответа. Если вы получаете ошибку, что URL не работает, но уверены в правильности ссылки, или не хотите, чтобы к вашему URL добавлялись дополнительные запросы — отметьте этот флажок." />
-                </span>
-              }
-              checked={skipCheck}
-              onChange={(e) => setSkipCheck(e.target.checked)}
-              disabled={loading}
-            />
-          </div>
+          {/* 1. Не проверять ссылку */}
+          <Checkbox
+            variant="simple"
+            label={
+              <span style={{ display: "inline-flex", alignItems: "center" }}>
+                Не проверять ссылку перед сокращением
+                <TooltipIcon text="По умолчанию URL-адрес будет проверен перед сокращением. Сервер выполнит запрос по URL-адресу и дождётся корректного ответа. Если вы получаете ошибку, что URL не работает, но уверены в правильности ссылки, или не хотите, чтобы к вашему URL добавлялись дополнительные запросы — отметьте этот флажок." />
+              </span>
+            }
+            checked={skipCheck}
+            onChange={(e) => setSkipCheck(e.target.checked)}
+            disabled={loading}
+          />
 
+          {/* 2. QR-код */}
           <Checkbox
             variant="simple"
             label="Сгенерировать QR-код"
@@ -382,6 +357,44 @@ export function ShortenForm() {
             onChange={(e) => setGenerateQr(e.target.checked)}
             disabled={loading}
           />
+
+          {/* 3. Уникальный адрес */}
+          <div>
+            <Checkbox
+              variant="simple"
+              label={
+                <span style={{ display: "inline-flex", alignItems: "center" }}>
+                  Уникальный адрес
+                  <TooltipIcon text="Вы можете задать своё окончание для короткой ссылки. Например, вместо случайного кода letteros.com/s/abc123 получить letteros.com/s/my-promo. Это удобно для брендированных или запоминающихся ссылок." />
+                </span>
+              }
+              checked={useCustomSlug}
+              onChange={(e) => {
+                setUseCustomSlug(e.target.checked);
+                if (!e.target.checked) setCustomSlug("");
+              }}
+              disabled={loading}
+            />
+            {/* Expandable input */}
+            <div
+              style={{
+                overflow: "hidden",
+                maxHeight: useCustomSlug ? "80px" : "0px",
+                opacity: useCustomSlug ? 1 : 0,
+                transition: "max-height 0.25s ease, opacity 0.2s ease",
+                marginTop: useCustomSlug ? "10px" : "0",
+              }}
+            >
+              <FormInput
+                type="text"
+                placeholder="Введите окончание ссылки"
+                value={customSlug}
+                onChange={(e) => setCustomSlug(e.target.value)}
+                aria-label="Уникальный адрес"
+                disabled={loading || !useCustomSlug}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Error */}

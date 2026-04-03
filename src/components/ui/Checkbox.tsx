@@ -14,7 +14,7 @@ export function Checkbox({ label, variant = "default", className = "", ...props 
   const labelStyles: Record<CheckboxVariant, CSSProperties> = {
     default: {
       position: "relative",
-      paddingLeft: "22px",
+      paddingLeft: "24px",
       color: colors.text.placeholder,
       fontFamily: "var(--l-font-family)",
       fontSize: "14px",
@@ -24,7 +24,7 @@ export function Checkbox({ label, variant = "default", className = "", ...props 
     },
     simple: {
       position: "relative",
-      paddingLeft: "32px",
+      paddingLeft: "24px",
       color: colors.text.main,
       fontFamily: "var(--l-font-family)",
       fontSize: "14px",
@@ -37,14 +37,14 @@ export function Checkbox({ label, variant = "default", className = "", ...props 
       paddingLeft: "22px",
       color: colors.text.placeholder,
       fontFamily: "var(--l-font-family)",
-      fontSize: "10px",
-      lineHeight: "1.2",
+      fontSize: "12px",
+      lineHeight: "1.4",
       cursor: "pointer",
       display: "inline-block",
     },
     large: {
       position: "relative",
-      paddingLeft: "49px",
+      paddingLeft: "36px",
       color: colors.text.main,
       fontFamily: "var(--l-font-family)",
       fontSize: "24px",
@@ -94,9 +94,23 @@ export function Checkbox({ label, variant = "default", className = "", ...props 
         .l-checkbox-input:checked + .l-checkbox-label::after {
           opacity: 1;
         }
+        .l-checkbox-input:checked + .l-checkbox-label {
+          color: ${colors.text.main} !important;
+        }
+        .l-checkbox-label-large::before {
+          width: 24px !important;
+          height: 24px !important;
+          border-radius: 6px !important;
+        }
+        .l-checkbox-label-large::after {
+          top: 8px !important;
+          left: 6px !important;
+          width: 14px !important;
+          height: 8px !important;
+        }
       `}</style>
       <input type="checkbox" id={id} className="l-checkbox-input" {...props} />
-      <label htmlFor={id} className="l-checkbox-label" style={labelStyles[variant]}>
+      <label htmlFor={id} className={`l-checkbox-label${variant === "large" ? " l-checkbox-label-large" : ""}`} style={labelStyles[variant]}>
         {label}
       </label>
     </div>

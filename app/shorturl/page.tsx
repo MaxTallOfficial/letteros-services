@@ -4,6 +4,7 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { ShortenForm } from "@/src/components/shorturl/ShortenForm";
+import { IconFree, IconUserCheck, IconQR, IconPencil, IconShieldCheck, IconTimer } from "@/src/components/ui/icons";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
@@ -24,26 +25,32 @@ const sectionStyle = {
 
 const featureCards = [
   {
+    icon: <IconFree />,
     title: "Бесплатно",
     text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов на количество ссылок.",
   },
   {
+    icon: <IconUserCheck />,
     title: "Без регистрации",
     text: "Просто вставьте ссылку и получите короткий URL. Никаких аккаунтов и паролей.",
   },
   {
+    icon: <IconQR />,
     title: "QR-код",
     text: "Автоматически генерируйте QR-код для любой ссылки и скачивайте его в\u00a0PNG.",
   },
   {
+    icon: <IconPencil />,
     title: "Кастомные ссылки",
     text: "Выберите свой вариант короткого кода\u00a0— например, letteros.com/s/my-campaign.",
   },
   {
+    icon: <IconShieldCheck />,
     title: "Проверка URL",
     text: "Перед сокращением сервис проверяет, что ссылка работает и\u00a0возвращает корректный ответ.",
   },
   {
+    icon: <IconTimer />,
     title: "Срок жизни 90 дней",
     text: "Все ссылки активны 90 дней с\u00a0момента создания. Дата истечения видна сразу.",
   },
@@ -290,6 +297,7 @@ export default function ShortUrlPage() {
                     padding: "40px",
                   }}
                 >
+                  <div style={{ marginBottom: "16px", color: colors.text.main }}>{card.icon}</div>
                   <Typography
                     level="h4"
                     color={colors.text.main}

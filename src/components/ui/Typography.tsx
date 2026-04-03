@@ -24,6 +24,15 @@ export function Typography({ level, as, children, color, style: extraStyle }: Ty
 
   const Tag = as ?? defaultTag();
 
+  const mobileClass = (): string => {
+    if (level.startsWith("h1")) return "l-h1";
+    if (level.startsWith("h2")) return "l-h2";
+    if (level.startsWith("h3")) return "l-h3";
+    if (level.startsWith("h4")) return "l-h4";
+    return "";
+  };
+  const className = mobileClass() || undefined;
+
   const mergedStyle: CSSProperties = {
     fontFamily: fontFamily.base,
     fontSize: t.fontSize,
@@ -35,5 +44,5 @@ export function Typography({ level, as, children, color, style: extraStyle }: Ty
     ...extraStyle,
   };
 
-  return <Tag style={mergedStyle}>{children}</Tag>;
+  return <Tag className={className} style={mergedStyle}>{children}</Tag>;
 }

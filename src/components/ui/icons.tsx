@@ -2,6 +2,126 @@
  * Letteros SVG Icons — as-is из UIKit letteros-uikit
  */
 
+/* ── Feature icons (outline/stroke, 40×40) ── */
+
+export function IconFree({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="6" y="20" width="28" height="16" rx="2" />
+      <rect x="4" y="14" width="32" height="6" rx="1" />
+      <line x1="20" y1="14" x2="20" y2="36" />
+      <path d="M20 14 C20 7 10 7 10 14" />
+      <path d="M20 14 C20 7 30 7 30 14" />
+    </svg>
+  );
+}
+
+export function IconUserCheck({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="16" cy="13" r="6" />
+      <path d="M4 36c0-7 5-12 12-12s12 5 12 12" />
+      <polyline points="27,22 30,25 36,18" />
+    </svg>
+  );
+}
+
+export function IconQR({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="4" width="13" height="13" rx="1.5" />
+      <rect x="7" y="7" width="7" height="7" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="23" y="4" width="13" height="13" rx="1.5" />
+      <rect x="26" y="7" width="7" height="7" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="4" y="23" width="13" height="13" rx="1.5" />
+      <rect x="7" y="26" width="7" height="7" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="23" y="23" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="30" y="23" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="23" y="30" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
+      <rect x="30" y="30" width="4" height="4" rx="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function IconPencil({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M28 6l6 6-18 18-8 2 2-8z" />
+      <line x1="24" y1="10" x2="30" y2="16" />
+    </svg>
+  );
+}
+
+export function IconShieldCheck({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 4l14 6v12c0 9-14 15-14 15S6 31 6 22V10z" />
+      <polyline points="14,20 18,24 26,16" />
+    </svg>
+  );
+}
+
+export function IconTimer({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="15" y1="4" x2="25" y2="4" />
+      <circle cx="20" cy="23" r="13" />
+      <polyline points="20,14 20,23 26,29" />
+    </svg>
+  );
+}
+
+export function IconCode({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="14,12 6,20 14,28" />
+      <polyline points="26,12 34,20 26,28" />
+      <line x1="23" y1="8" x2="17" y2="32" />
+    </svg>
+  );
+}
+
+export function IconTextSelect({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="8" y1="10" x2="32" y2="10" />
+      <rect x="7" y="16" width="22" height="8" rx="1.5" />
+      <line x1="10" y1="20" x2="26" y2="20" />
+      <line x1="8" y1="30" x2="32" y2="30" />
+      <line x1="8" y1="36" x2="22" y2="36" />
+    </svg>
+  );
+}
+
+export function IconChartDown({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="6" y="10" width="11" height="24" rx="2" />
+      <rect x="23" y="20" width="11" height="14" rx="2" />
+      <line x1="28" y1="4" x2="28" y2="16" />
+      <polyline points="24,12 28,16 32,12" />
+    </svg>
+  );
+}
+
+export function IconTypoRules({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 34L18 8l11 26" />
+      <line x1="11" y1="24" x2="25" y2="24" />
+      <polyline points="28,10 31,14 37,7" />
+    </svg>
+  );
+}
+
+export function IconBolt({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M23 4L10 22h12l-5 14 20-22H25z" />
+    </svg>
+  );
+}
+
 export function LogoMark({ size = 28, color = "white" }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 28 28" fill="none">

@@ -4,6 +4,7 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { TypographTool } from "@/src/components/typograph/TypographTool";
+import { IconFree, IconTypoRules, IconBolt } from "@/src/components/ui/icons";
 import { colors, shadows } from "@/tokens";
 
 export const metadata: Metadata = {
@@ -22,18 +23,17 @@ const sectionStyle = { paddingBottom: "100px" };
 
 const featureCards = [
   {
+    icon: <IconFree />,
     title: "Бесплатно",
     text: "Сервис полностью бесплатный\u00a0— без регистрации, без лимитов.",
   },
   {
-    title: "Без сервера",
-    text: "Текст обрабатывается прямо в\u00a0браузере и\u00a0никуда не\u00a0отправляется.",
-  },
-  {
+    icon: <IconTypoRules />,
     title: "Полный набор правил",
     text: "Кавычки, тире, неразрывные пробелы, спецсимволы, числа\u00a0— всё по правилам русской типографики.",
   },
   {
+    icon: <IconBolt />,
     title: "Мгновенно",
     text: "Обработка происходит сразу при вводе\u00a0— результат виден в\u00a0режиме реального времени.",
   },
@@ -262,6 +262,7 @@ export default function TypographPage() {
                     padding: "40px",
                   }}
                 >
+                  <div style={{ marginBottom: "16px", color: colors.text.main }}>{card.icon}</div>
                   <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
                     {card.title}
                   </Typography>
