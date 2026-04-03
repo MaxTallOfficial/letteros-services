@@ -113,7 +113,7 @@ export default function TypographPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Letteros Typograph
+                Типограф
               </Typography>
               <Typography
                 level="body"

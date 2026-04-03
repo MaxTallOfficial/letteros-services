@@ -339,10 +339,10 @@ export function ShortenForm() {
           <Checkbox
             variant="simple"
             label={
-              <span style={{ display: "inline-flex", alignItems: "center" }}>
+              <>
                 Не проверять ссылку перед сокращением
                 <TooltipIcon text="По умолчанию URL-адрес будет проверен перед сокращением. Сервер выполнит запрос по URL-адресу и дождётся корректного ответа. Если вы получаете ошибку, что URL не работает, но уверены в правильности ссылки, или не хотите, чтобы к вашему URL добавлялись дополнительные запросы — отметьте этот флажок." />
-              </span>
+              </>
             }
             checked={skipCheck}
             onChange={(e) => setSkipCheck(e.target.checked)}
@@ -363,10 +363,10 @@ export function ShortenForm() {
             <Checkbox
               variant="simple"
               label={
-                <span style={{ display: "inline-flex", alignItems: "center" }}>
+                <>
                   Уникальный адрес
                   <TooltipIcon text="Вы можете задать своё окончание для короткой ссылки. Например, вместо случайного кода letteros.com/s/abc123 получить letteros.com/s/my-promo. Это удобно для брендированных или запоминающихся ссылок." />
-                </span>
+                </>
               }
               checked={useCustomSlug}
               onChange={(e) => {

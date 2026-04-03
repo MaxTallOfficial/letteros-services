@@ -205,9 +205,9 @@ export function Header() {
             <Dropdown
               label="Сервисы"
               items={[
-                { text: "Short URL", href: "/shorturl/" },
-                { text: "Shortcode", href: "/shortcode/" },
-                { text: "Typograph", href: "/typograph/" },
+                { text: "Сокращение ссылок", href: "/shorturl/" },
+                { text: "Компрессор кода", href: "/shortcode/" },
+                { text: "Типограф", href: "/typograph/" },
               ]}
             />
 

@@ -122,7 +122,7 @@ export default function ShortUrlPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Letteros Short URL
+                Сокращение ссылок
               </Typography>
               <Typography
                 level="body"

@@ -113,7 +113,7 @@ export default function ShortcodePage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Letteros Shortcode
+                Компрессор кода
               </Typography>
               <Typography
                 level="body"
