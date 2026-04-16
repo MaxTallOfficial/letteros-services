@@ -4,91 +4,51 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { TypographTool } from "@/src/components/typograph/TypographTool";
-import { IconFree, IconShieldCheck, IconBolt, IconQuotes, IconDash, IconNbsp } from "@/src/components/ui/icons";
-import { colors, shadows } from "@/tokens";
+import { IconBolt, IconQuotes, IconFree, IconPencil, IconDocument, IconEnvelope, IconPerson } from "@/src/components/ui/icons";
+import { colors } from "@/tokens";
+import Section from "@/src/components/landing/Section";
+import StepSwitcher from "@/src/components/landing/StepSwitcher";
+import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
+import FeatureGrid from "@/src/components/landing/FeatureGrid";
+import CTABlock from "@/src/components/landing/CTABlock";
 
 export const metadata: Metadata = {
-  title: "Letteros Typograph — типограф онлайн",
+  title: "Letteros Typograph — типограф онлайн",
   description:
-    "Расставляет кавычки-ёлочки, тире и\u00a0неразрывные пробелы автоматически. Текст обрабатывается в\u00a0браузере и\u00a0никуда не\u00a0отправляется.",
+    "Расставляет кавычки-ёлочки, тире и неразрывные пробелы автоматически. Текст обрабатывается в браузере и никуда не отправляется.",
   openGraph: {
-    title: "Letteros Typograph — типограф онлайн",
+    title: "Letteros Typograph — типограф онлайн",
     description:
-      "Расставляет кавычки-ёлочки, тире и\u00a0неразрывные пробелы автоматически. Текст обрабатывается в\u00a0браузере и\u00a0никуда не\u00a0отправляется.",
+      "Расставляет кавычки-ёлочки, тире и неразрывные пробелы автоматически. Текст обрабатывается в браузере и никуда не отправляется.",
     type: "website",
   },
 };
 
-const sectionStyle = { paddingBottom: "100px" };
-
-const featureCards = [
+const howSteps = [
   {
-    icon: <IconQuotes />,
-    title: "Кавычки-ёлочки",
-    text: 'Прямые кавычки заменяются на\u00a0«ёлочки», вложенные\u00a0— на\u00a0\u201elапки\u201c. Работает и\u00a0для одиночных, и\u00a0для вложенных конструкций.',
+    id: "paste",
+    label: "Вставьте текст",
+    description:
+      "Скопируйте текст из любого источника — документа, письма, CMS, мессенджера — и вставьте в левое поле. Типограф начнёт обработку автоматически, результат появится в правом поле.",
+    screenshotCaption: "Скриншот с вставленным текстом — до",
+    imageSrc: "/images/typograph/howto_1.jpg",
   },
   {
-    icon: <IconDash />,
-    title: "Тире и\u00a0дефисы",
-    text: "Дефис между словами заменяется на\u00a0длинное тире. Дефисы внутри слов остаются на\u00a0месте.",
+    id: "check",
+    label: "Проверьте изменения",
+    description:
+      "Счётчик исправлений покажет количество замен по категориям: сколько кавычек заменено, сколько тире расставлено, сколько неразрывных пробелов добавлено. Наведите на иконку — и увидите детальную статистику.",
+    screenshotCaption: "Скриншот результата с тултипом статистики",
+    imageSrc: "/images/typograph/howto_2.jpg",
   },
   {
-    icon: <IconNbsp />,
-    title: "Неразрывные пробелы",
-    text: "Предлоги, союзы и\u00a0инициалы не\u00a0отрываются от\u00a0следующего слова. Висячих предлогов в\u00a0тексте не\u00a0будет.",
-  },
-  {
-    icon: <IconShieldCheck />,
-    title: "Приватность",
-    text: "Текст обрабатывается в\u00a0браузере и\u00a0не\u00a0покидает ваше устройство. Серверных запросов нет.",
-  },
-  {
-    icon: <IconBolt />,
-    title: "Автоматическая обработка",
-    text: "Результат появляется при вставке, без нажатия кнопок. При ручном вводе — с\u00a0небольшой задержкой.",
-  },
-  {
-    icon: <IconFree />,
-    title: "Бесплатно",
-    text: "Без лимитов и\u00a0скрытых условий.",
-  },
-];
-
-const howsSteps = [
-  {
-    num: "01",
-    title: "Вставьте текст",
-    text: "Скопируйте текст из\u00a0любого источника и\u00a0вставьте в\u00a0левое поле. Результат появится справа автоматически.",
-  },
-  {
-    num: "02",
-    title: "Проверьте изменения",
-    text: "Счётчик исправлений покажет количество замен по\u00a0категориям: кавычки, тире, неразрывные пробелы.",
-  },
-  {
-    num: "03",
-    title: "Скопируйте результат",
-    text: "Нажмите кнопку копирования и\u00a0вставьте готовый текст туда, где он\u00a0нужен.",
-  },
-];
-
-const audienceCards = [
-  {
-    title: "Копирайтеры и\u00a0редакторы",
-    text: "Ручная расстановка кавычек-ёлочек и\u00a0тире отнимает время и\u00a0всё равно пропускает ошибки. Типограф обрабатывает весь текст за\u00a0секунду.",
-  },
-  {
-    title: "Контент-менеджеры",
-    text: "Текст из\u00a0CMS, из\u00a0писем клиентов или из\u00a0Google Docs приходит с\u00a0прямыми кавычками и\u00a0дефисами вместо тире. Вставить и\u00a0скопировать — быстрее, чем править вручную.",
-  },
-  {
-    title: "Email-маркетологи",
-    text: "Типографически чистый текст в\u00a0рассылке — признак профессионализма. Разница между дефисом и\u00a0тире видна подписчику, даже если он\u00a0не\u00a0может её назвать.",
-  },
-  {
-    title: "Все остальные",
-    text: "Любой текст, который кто-то будет читать, заслуживает правильных кавычек.",
-  },
+    id: "copy",
+    label: "Скопируйте результат",
+    description:
+      "Нажмите кнопку копирования в поле результата и вставьте готовый текст туда, где он нужен: в CMS, в письмо, в документ.",
+    screenshotCaption: "Скриншот с кнопкой копирования",
+    imageSrc: "/images/typograph/howto_3.jpg",
+  }
 ];
 
 export default function TypographPage() {
@@ -104,7 +64,7 @@ export default function TypographPage() {
             paddingTop: "80px",
             paddingBottom: "80px",
           }}
-          aria-label="Инструмент типографирования текста"
+          aria-label="Инструмент типографа"
         >
           <Container>
             <div style={{ textAlign: "center", marginBottom: "48px" }}>
@@ -113,7 +73,7 @@ export default function TypographPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Типограф
+                Letteros Typograph
               </Typography>
               <Typography
                 level="body"
@@ -121,9 +81,9 @@ export default function TypographPage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Приводит текст в{"\u00a0"}порядок по{"\u00a0"}правилам русской типографики.
+                Приводит текст в порядок по правилам русской типографики.
                 <br />
-                Кавычки, тире, неразрывные пробелы и{"\u00a0"}спецсимволы.
+                Кавычки, тире, неразрывные пробелы и спецсимволы.
               </Typography>
             </div>
 
@@ -131,145 +91,133 @@ export default function TypographPage() {
           </Container>
         </section>
 
-        {/* Audience */}
-        <section
-          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Для кого"
-        >
-          <Container>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Всем, кто работает с{"\u00a0"}текстом
-            </Typography>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "30px",
-              }}
-            >
-              {audienceCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
-                    {card.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {card.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+        {/* Для кого */}
+        <Section bg="alt">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Всем, кто работает с текстом
+          </Typography>
 
-        {/* How it works */}
-        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="Как это работает">
-          <Container>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Как это работает
-            </Typography>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-                gap: "30px",
-              }}
-            >
-              {howsSteps.map((step) => (
-                <div
-                  key={step.num}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "36px",
-                      fontWeight: 700,
-                      color: colors.accent.blue,
-                      marginBottom: "16px",
-                      fontFamily: "var(--l-font-family)",
-                    }}
-                  >
-                    {step.num}
-                  </div>
-                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "12px" }}>
-                    {step.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {step.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+          <style>{`
+            .l-audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
+            @media (max-width: 767px) { .l-audience-grid { grid-template-columns: 1fr; gap: 40px; } }
+          `}</style>
+          <div className="l-audience-grid">
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPencil size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Копирайтеры и редакторы
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Текст после написания нуждается в типографической чистке. Делать это вручную — рутина, которая отнимает время и пропускает ошибки. Типограф применяет правила русской типографики автоматически — от кавычек до спецсимволов.
+              </p>
+                          </article>
 
-        {/* Features */}
-        <section
-          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Возможности сервиса"
-        >
-          <Container>
-            <style>{`
-              @media (max-width: 900px) { .typo-features-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-              @media (max-width: 600px) { .typo-features-grid { grid-template-columns: 1fr !important; } }
-            `}</style>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Возможности сервиса
-            </Typography>
-            <div
-              className="typo-features-grid"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "30px",
-              }}
-            >
-              {featureCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <div style={{ marginBottom: "16px", color: colors.text.main }}>{card.icon}</div>
-                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
-                    {card.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {card.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconDocument size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Контент-менеджеры
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Текст из CMS, из писем или из Google Docs приходит с прямыми кавычками и дефисами вместо тире. Вставить в типограф перед публикацией — одно действие, которое решает все проблемы разом.
+              </p>
+                          </article>
+
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconEnvelope size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Email-маркетологи
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Типографически чистый текст в рассылке — признак профессионализма. Разница между дефисом и тире видна читателю, даже если он не может её назвать. Типограф обрабатывает текст перед вёрсткой за секунду.
+              </p>
+                          </article>
+
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPerson size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Все остальные
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
+                Любой текст, который кто-то будет читать, заслуживает правильных кавычек и тире. Типограф приводит в порядок всё за секунду.
+              </p>
+            </article>
+          </div>
+        </Section>
+
+        {/* Как это работает */}
+        <Section bg="white">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Как это работает
+          </Typography>
+          <StepSwitcher steps={howSteps} />
+        </Section>
+
+        {/* Возможности сервиса */}
+        <Section bg="white">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Возможности сервиса
+          </Typography>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "60px" }}>
+            <FeatureHighlight
+              title="Правильные символы вместо суррогатов"
+              paragraphs={[
+                'Типограф заменяет прямые кавычки на «ёлочки», корректно обрабатывает вложенные конструкции и расставляет тире вместо дефисов между словами. Дефисы внутри слов остаются на месте.'
+              ]}
+              imageSrc="/images/typograph/features_1.jpg"
+              screenshotCaption="Визуал — примеры до/после: кавычки и тире"
+            />
+            <FeatureHighlight
+              title="Никаких висячих предлогов"
+              paragraphs={[
+                "Типограф вставляет неразрывный пробел после предлогов, союзов и инициалов. Короткое слово «приклеивается» к следующему и переносится вместе с ним."
+              ]}
+              imageSrc="/images/typograph/features_2.jpg"
+              screenshotCaption="Визуал — пример текста с висячими предлогами и без"
+              reverse
+            />
+            <FeatureHighlight
+              title="Текст не покидает ваш браузер"
+              paragraphs={[
+                "Текст обрабатывается полностью в браузере. Не передаётся по сети, не сохраняется на сервере, не попадает в логи."
+              ]}
+              imageSrc="/images/typograph/features_3.jpg"
+              screenshotCaption="Визуал — схема «текст → браузер → результат», без сервера"
+            />
+          </div>
+
+          <FeatureGrid
+            features={[
+              {
+                icon: <IconBolt />,
+                title: "Автоматическая обработка",
+                text: "Результат появляется при вставке текста. При ручном вводе — с небольшой задержкой.",
+              },
+              {
+                icon: <IconQuotes />,
+                title: "Статистика исправлений",
+                text: "Количество замен по категориям: кавычки, тире, пробелы. Видно сразу после обработки.",
+              },
+              {
+                icon: <IconFree />,
+                title: "Бесплатно",
+                text: "Без лимитов и скрытых условий.",
+              }
+            ]}
+          />
+        </Section>
+
+        {/* CTA */}
+        <CTABlock bannerSrc="/images/typograph/cta_banner.jpg" />
       </main>
 
       <Footer />

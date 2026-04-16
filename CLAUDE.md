@@ -88,6 +88,22 @@ Raleway по умолчанию использует oldstyle-цифры, кот
 В `tokens/index.ts` вариант `transparentBlack` имеет `border: "none"`.
 (Стандартный UIKit имеет рамку, для утилитарных кнопок сервисов убрана.)
 
+### 12. Лендинговые секции — landing-компоненты
+Все три страницы используют shared landing-компоненты из `src/components/landing/`:
+- `Section` — обёртка секции с чередованием фонов (white/alt/dark)
+- `StepSwitcher` — «Как это работает», вертикальные переключатели слева + контент справа
+- `FeatureHighlight` — 50/50 layout текст + визуал-заглушка (чередование сторон)
+- `FeatureGrid` — сетка фич без карточных обвёсок (иконка + заголовок + текст)
+- `ScreenshotPlaceholder` — серый placeholder 16:9 с подписью (будут заменены на реальные скриншоты)
+- `CTABlock` — кросс-промо Letteros перед футером (кнопка → app.letteros.com)
+- `SectionTabs` — генерик pill-табы (используется в hero shorturl)
+
+### 13. shorturl — две вкладки в hero
+Hero shorturl содержит SectionTabs с двумя вкладками:
+- «Сокращение ссылок» → ShortenForm (чекбокс QR удалён)
+- «QR-код» → QRGenerator (отдельный компонент, генерация на клиенте через qrcode.react)
+Обёртка: `src/components/shorturl/HeroTabs.tsx` ("use client").
+
 ## Структура проекта
 
 ```
@@ -120,8 +136,18 @@ letteros-sevices/
 │   │   │   ├── FormInput.tsx
 │   │   │   ├── Typography.tsx
 │   │   │   └── icons.tsx
+│   │   ├── landing/
+│   │   │   ├── Section.tsx          ← обёртка секции (bg: white/alt/dark)
+│   │   │   ├── ScreenshotPlaceholder.tsx ← серый placeholder 16:9
+│   │   │   ├── SectionTabs.tsx      ← генерик pill-табы
+│   │   │   ├── StepSwitcher.tsx     ← «Как это работает» (вертикальные переключатели)
+│   │   │   ├── FeatureHighlight.tsx ← 50/50 текст + визуал
+│   │   │   ├── FeatureGrid.tsx      ← сетка фич без карточек
+│   │   │   └── CTABlock.tsx         ← кросс-промо Letteros
 │   │   ├── shorturl/
-│   │   │   └── ShortenForm.tsx  ← форма + результат + QR
+│   │   │   ├── ShortenForm.tsx  ← форма + результат (QR удалён)
+│   │   │   ├── QRGenerator.tsx  ← генератор QR-кодов (отдельная вкладка)
+│   │   │   └── HeroTabs.tsx     ← переключатель вкладок в hero
 │   │   ├── shortcode/
 │   │   │   ├── CompressorTool.tsx  ← "use client", автообработка, 2-колоночный layout
 │   │   │   ├── TabSwitcher.tsx     ← переключатель HTML/CSS/JS

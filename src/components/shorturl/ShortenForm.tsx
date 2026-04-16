@@ -1,16 +1,10 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { colors, shadows } from "@/tokens";
 import { FormInput } from "@/src/components/ui/FormInput";
 import { Checkbox } from "@/src/components/ui/Checkbox";
 import { Button } from "@/src/components/ui/Button";
-import dynamic from "next/dynamic";
-
-const QRCodeCanvas = dynamic(
-  () => import("qrcode.react").then((m) => m.QRCodeCanvas),
-  { ssr: false }
-);
 
 interface ShortenResult {
   shortUrl: string;
@@ -77,12 +71,10 @@ export function ShortenForm() {
   const [customSlug, setCustomSlug] = useState("");
   const [useCustomSlug, setUseCustomSlug] = useState(false);
   const [skipCheck, setSkipCheck] = useState(false);
-  const [generateQr, setGenerateQr] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ShortenResult | null>(null);
   const [copied, setCopied] = useState(false);
-  const qrRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -116,7 +108,6 @@ export function ShortenForm() {
             url: url.trim(),
             skipCheck,
             customSlug: useCustomSlug ? customSlug.trim() || undefined : undefined,
-            generateQr,
           }),
         });
 
@@ -133,7 +124,7 @@ export function ShortenForm() {
         setLoading(false);
       }
     },
-    [url, customSlug, useCustomSlug, skipCheck, generateQr]
+    [url, customSlug, useCustomSlug, skipCheck]
   );
 
   const handleCopy = useCallback(async () => {
@@ -155,15 +146,6 @@ export function ShortenForm() {
     }
   }, [result]);
 
-  const handleDownloadQr = useCallback(() => {
-    const canvas = qrRef.current?.querySelector("canvas");
-    if (!canvas) return;
-    const link = document.createElement("a");
-    link.download = `qr-${result?.code ?? "link"}.png`;
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  }, [result]);
-
   const handleReset = useCallback(() => {
     setResult(null);
     setError(null);
@@ -171,7 +153,6 @@ export function ShortenForm() {
     setCustomSlug("");
     setUseCustomSlug(false);
     setSkipCheck(false);
-    setGenerateQr(false);
     setCopied(false);
   }, []);
 
@@ -263,53 +244,6 @@ export function ShortenForm() {
           Ссылка будет активна до {expiryDate}
         </p>
 
-        {/* QR Code */}
-        {generateQr && (
-          <div style={{ marginBottom: "24px" }}>
-            <div
-              ref={qrRef}
-              style={{
-                display: "inline-block",
-                padding: "16px",
-                border: `1px solid ${colors.border.default}`,
-                borderRadius: "15px",
-                marginBottom: "12px",
-              }}
-            >
-              <QRCodeCanvas value={result.shortUrl} size={280} />
-            </div>
-            <br />
-            <button
-              onClick={handleDownloadQr}
-              style={{
-                height: "42px",
-                padding: "0 20px",
-                borderRadius: "10px",
-                border: `1px solid ${colors.border.default}`,
-                background: colors.bg.white,
-                color: colors.text.main,
-                fontSize: "14px",
-                fontWeight: 600,
-                cursor: "pointer",
-                transition: "all 0.25s",
-                fontFamily: "var(--l-font-family)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = colors.surface.dark;
-                e.currentTarget.style.color = colors.text.white;
-                e.currentTarget.style.borderColor = colors.surface.dark;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = colors.bg.white;
-                e.currentTarget.style.color = colors.text.main;
-                e.currentTarget.style.borderColor = colors.border.default;
-              }}
-            >
-              Скачать QR-код (PNG)
-            </button>
-          </div>
-        )}
-
         <Button variant="transparentBlack" size="m" onClick={handleReset}>
           Сократить ещё
         </Button>
@@ -349,16 +283,7 @@ export function ShortenForm() {
             disabled={loading}
           />
 
-          {/* 2. QR-код */}
-          <Checkbox
-            variant="simple"
-            label="Сгенерировать QR-код"
-            checked={generateQr}
-            onChange={(e) => setGenerateQr(e.target.checked)}
-            disabled={loading}
-          />
-
-          {/* 3. Уникальный адрес */}
+          {/* 2. Уникальный адрес */}
           <div>
             <Checkbox
               variant="simple"

@@ -4,91 +4,51 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
-import { IconFree, IconCode, IconShieldCheck, IconChartDown, IconBolt, IconTextSelect } from "@/src/components/ui/icons";
-import { colors, shadows } from "@/tokens";
+import { IconFree, IconCode, IconBolt, IconEnvelope, IconDocument, IconPerson } from "@/src/components/ui/icons";
+import { colors } from "@/tokens";
+import Section from "@/src/components/landing/Section";
+import StepSwitcher from "@/src/components/landing/StepSwitcher";
+import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
+import FeatureGrid from "@/src/components/landing/FeatureGrid";
+import CTABlock from "@/src/components/landing/CTABlock";
 
 export const metadata: Metadata = {
-  title: "Letteros Shortcode — компрессор кода",
+  title: "Letteros Shortcode — компрессор кода",
   description:
-    "Минифицирует HTML, CSS и\u00a0JS прямо в\u00a0браузере. Код никуда не\u00a0отправляется.",
+    "Минифицирует HTML, CSS и JS прямо в браузере. Код никуда не отправляется.",
   openGraph: {
-    title: "Letteros Shortcode — компрессор кода",
+    title: "Letteros Shortcode — компрессор кода",
     description:
-      "Минифицирует HTML, CSS и\u00a0JS прямо в\u00a0браузере. Код никуда не\u00a0отправляется.",
+      "Минифицирует HTML, CSS и JS прямо в браузере. Код никуда не отправляется.",
     type: "website",
   },
 };
 
-const sectionStyle = { paddingBottom: "100px" };
-
-const featureCards = [
+const howSteps = [
   {
-    icon: <IconCode />,
-    title: "Три языка",
-    text: "HTML, CSS и\u00a0JS в\u00a0одном интерфейсе. Переключение между вкладками не\u00a0сбрасывает содержимое.",
+    id: "lang",
+    label: "Выберите язык",
+    description:
+      "Переключите вкладку на HTML, CSS или JS. Каждая вкладка работает независимо: содержимое сохраняется при переключении. Можно параллельно сжимать HTML-шаблон и CSS-файл, не теряя результаты.",
+    screenshotCaption: "Скриншот с выбором вкладки HTML/CSS/JS",
+    imageSrc: "/images/shortcode/howto_1.jpg",
   },
   {
-    icon: <IconShieldCheck />,
-    title: "Приватность",
-    text: "Код обрабатывается в\u00a0браузере и\u00a0не\u00a0покидает ваше устройство. Серверных запросов нет.",
+    id: "paste",
+    label: "Вставьте код",
+    description:
+      "Скопируйте фрагмент и вставьте в левое поле. Сжатый результат появится в правом поле автоматически — нажимать ничего не нужно. Статистика под полями покажет размер до и после в символах и байтах.",
+    screenshotCaption: "Скриншот с вставленным кодом и результатом",
+    imageSrc: "/images/shortcode/howto_2.jpg",
   },
   {
-    icon: <IconChartDown />,
-    title: "Статистика сжатия",
-    text: "Размер до\u00a0и\u00a0после в\u00a0символах и\u00a0байтах. Процент экономии виден сразу.",
-  },
-  {
-    icon: <IconBolt />,
-    title: "Автоматическая обработка",
-    text: "Результат появляется при вставке, без нажатия кнопок. При ручном вводе — с\u00a0небольшой задержкой.",
-  },
-  {
-    icon: <IconTextSelect />,
-    title: "Подсветка синтаксиса",
-    text: "Код подсвечивается и\u00a0в\u00a0поле ввода, и\u00a0в\u00a0результате. Язык подсветки переключается вместе с\u00a0вкладкой.",
-  },
-  {
-    icon: <IconFree />,
-    title: "Бесплатно",
-    text: "Без лимитов и\u00a0скрытых условий.",
-  },
-];
-
-const howsSteps = [
-  {
-    num: "01",
-    title: "Выберите язык",
-    text: "Переключите вкладку на\u00a0HTML, CSS или JS. Каждая вкладка хранит своё содержимое отдельно.",
-  },
-  {
-    num: "02",
-    title: "Вставьте код",
-    text: "Скопируйте фрагмент и\u00a0вставьте в\u00a0левое поле. Сжатый результат появится справа автоматически.",
-  },
-  {
-    num: "03",
-    title: "Скопируйте результат",
-    text: "Нажмите кнопку копирования в\u00a0поле результата. Статистика покажет, сколько удалось сэкономить.",
-  },
-];
-
-const audienceCards = [
-  {
-    title: "Email-верстальщики",
-    text: "HTML-письмо с\u00a0лишними пробелами и\u00a0комментариями весит больше и\u00a0может обрезаться почтовиком. Минификация убирает всё ненужное и\u00a0сохраняет структуру.",
-  },
-  {
-    title: "Фронтенд-разработчики",
-    text: "Быстро сжать фрагмент кода перед вставкой в\u00a0продакшен, не\u00a0запуская сборщик. Один таб — один результат.",
-  },
-  {
-    title: "Контент-менеджеры",
-    text: "HTML-виджеты, встраиваемые блоки, сторонние скрипты — всё это можно сжать перед добавлением на\u00a0страницу, даже без навыков программирования.",
-  },
-  {
-    title: "Все остальные",
-    text: "Иногда нужно убрать из\u00a0кода лишнее и\u00a0получить чистый минифицированный результат.",
-  },
+    id: "copy",
+    label: "Скопируйте результат",
+    description:
+      "Нажмите кнопку копирования в поле результата. Минифицированный код готов к вставке — в письмо, на сайт, в сборку.",
+    screenshotCaption: "Скриншот результата со статистикой и кнопкой копирования",
+    imageSrc: "/images/shortcode/howto_3.jpg",
+  }
 ];
 
 export default function ShortcodePage() {
@@ -113,7 +73,7 @@ export default function ShortcodePage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Компрессор кода
+                Letteros Shortcode
               </Typography>
               <Typography
                 level="body"
@@ -121,9 +81,9 @@ export default function ShortcodePage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Сжимает HTML, CSS и{"\u00a0"}JS до{"\u00a0"}минимального размера.
+                Сжимает HTML, CSS и JS до минимального размера.
                 <br />
-                Работает в{"\u00a0"}браузере, код остаётся у{"\u00a0"}вас.
+                Работает в браузере, код остаётся у вас.
               </Typography>
             </div>
 
@@ -131,145 +91,133 @@ export default function ShortcodePage() {
           </Container>
         </section>
 
-        {/* Audience */}
-        <section
-          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Для кого"
-        >
-          <Container>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Всем, кто работает с{"\u00a0"}кодом
-            </Typography>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "30px",
-              }}
-            >
-              {audienceCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
-                    {card.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {card.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+        {/* Для кого */}
+        <Section bg="alt">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Всем, кто работает с кодом
+          </Typography>
 
-        {/* How it works */}
-        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="Как это работает">
-          <Container>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Как это работает
-            </Typography>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-                gap: "30px",
-              }}
-            >
-              {howsSteps.map((step) => (
-                <div
-                  key={step.num}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "36px",
-                      fontWeight: 700,
-                      color: colors.accent.blue,
-                      marginBottom: "16px",
-                      fontFamily: "var(--l-font-family)",
-                    }}
-                  >
-                    {step.num}
-                  </div>
-                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "12px" }}>
-                    {step.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {step.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+          <style>{`
+            .l-audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
+            @media (max-width: 767px) { .l-audience-grid { grid-template-columns: 1fr; gap: 40px; } }
+          `}</style>
+          <div className="l-audience-grid">
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconEnvelope size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Email-верстальщики
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                HTML-письмо перед отправкой должно весить как можно меньше — почтовые клиенты обрезают письма, превышающие допустимый объём. Минификация убирает комментарии, пробельные символы и необязательные атрибуты, сохраняя структуру.
+              </p>
+                          </article>
 
-        {/* Features */}
-        <section
-          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Возможности сервиса"
-        >
-          <Container>
-            <style>{`
-              @media (max-width: 900px) { .sc-features-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-              @media (max-width: 600px) { .sc-features-grid { grid-template-columns: 1fr !important; } }
-            `}</style>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Возможности сервиса
-            </Typography>
-            <div
-              className="sc-features-grid"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "30px",
-              }}
-            >
-              {featureCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <div style={{ marginBottom: "16px", color: colors.text.main }}>{card.icon}</div>
-                  <Typography level="h4" color={colors.text.main} style={{ marginBottom: "16px" }}>
-                    {card.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {card.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconCode size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Фронтенд-разработчики
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Иногда нужно сжать конкретный файл или блок кода перед вставкой в продакшен, не запуская сборщик. Компрессор делает ровно одну вещь — принимает код и возвращает минифицированную версию. Без настройки окружения.
+              </p>
+                          </article>
+
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconDocument size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Контент-менеджеры
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                HTML-виджеты, встраиваемые блоки, сторонние скрипты — всё это можно сжать перед добавлением на сайт. Навыков программирования не требуется: вставьте код, скопируйте результат.
+              </p>
+                          </article>
+
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPerson size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Все остальные
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
+                Иногда нужно убрать из кода лишнее. Компрессор делает это за секунду — без регистрации и без передачи кода на сервер.
+              </p>
+            </article>
+          </div>
+        </Section>
+
+        {/* Как это работает */}
+        <Section bg="white">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Как это работает
+          </Typography>
+          <StepSwitcher steps={howSteps} />
+        </Section>
+
+        {/* Возможности сервиса */}
+        <Section bg="white">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Возможности сервиса
+          </Typography>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "60px" }}>
+            <FeatureHighlight
+              title="Код не покидает ваш браузер"
+              paragraphs={[
+                "Минификация выполняется полностью в браузере. Код не передаётся по сети, не сохраняется на сервере, не попадает в логи."
+              ]}
+              imageSrc="/images/shortcode/features_1.jpg"
+              screenshotCaption="Визуал — схема «код → браузер → результат», без сервера"
+            />
+            <FeatureHighlight
+              title="HTML, CSS и JS без переключения между инструментами"
+              paragraphs={[
+                "Три вкладки — три независимых редактора. Переключение не сбрасывает данные. Подсветка синтаксиса работает в обоих полях и переключается вместе с вкладкой."
+              ]}
+              imageSrc="/images/shortcode/features_2.jpg"
+              screenshotCaption="Визуал — три вкладки с разным кодом"
+              reverse
+            />
+            <FeatureHighlight
+              title="Результат появляется сразу при вставке"
+              paragraphs={[
+                "Кнопки «Сжать» нет — результат генерируется автоматически. Статистика (размер до, после и процент экономии) обновляется вместе с результатом."
+              ]}
+              imageSrc="/images/shortcode/features_3.jpg"
+              screenshotCaption="Визуал — автообработка, статистика"
+            />
+          </div>
+
+          <FeatureGrid
+            features={[
+              {
+                icon: <IconCode />,
+                title: "Без регистрации",
+                text: "Открываете страницу и сразу работаете. Никаких аккаунтов и паролей.",
+              },
+              {
+                icon: <IconBolt />,
+                title: "Без ограничений по размеру кода",
+                text: "Вставляйте фрагменты любого объёма. Обработка происходит на вашем устройстве.",
+              },
+              {
+                icon: <IconFree />,
+                title: "Бесплатно",
+                text: "Без лимитов и скрытых условий.",
+              }
+            ]}
+          />
+        </Section>
+
+        {/* CTA */}
+        <CTABlock bannerSrc="/images/shortcode/cta_banner.jpg" />
       </main>
 
       <Footer />

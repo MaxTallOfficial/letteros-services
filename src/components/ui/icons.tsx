@@ -156,6 +156,46 @@ export function IconNbsp({ size = 40 }: { size?: number }) {
   );
 }
 
+export function IconEnvelope({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="8" width="32" height="24" rx="2" />
+      <polyline points="4,8 20,22 36,8" />
+    </svg>
+  );
+}
+
+export function IconMegaphone({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M32 6v28l-16-6V12z" />
+      <rect x="4" y="12" width="12" height="16" rx="2" />
+      <path d="M10 28v6a2 2 0 002 2h2a2 2 0 002-2v-4" />
+    </svg>
+  );
+}
+
+export function IconDocument({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 4h16l8 8v24a2 2 0 01-2 2H10a2 2 0 01-2-2V4z" />
+      <polyline points="24,4 24,12 32,12" />
+      <line x1="14" y1="20" x2="26" y2="20" />
+      <line x1="14" y1="26" x2="26" y2="26" />
+      <line x1="14" y1="32" x2="20" y2="32" />
+    </svg>
+  );
+}
+
+export function IconPerson({ size = 40 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="20" cy="12" r="6" />
+      <path d="M8 36c0-7 5-12 12-12s12 5 12 12" />
+    </svg>
+  );
+}
+
 export function LogoMark({ size = 28, color = "white" }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 28 28" fill="none">

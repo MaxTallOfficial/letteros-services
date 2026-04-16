@@ -3,101 +3,52 @@ import { Header } from "@/src/components/shared/Header";
 import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
-import { ShortenForm } from "@/src/components/shorturl/ShortenForm";
-import {
-  IconFree,
-  IconUserCheck,
-  IconQR,
-  IconPencil,
-  IconShieldCheck,
-  IconTimer,
-} from "@/src/components/ui/icons";
-import { colors, shadows } from "@/tokens";
+import { HeroTabs } from "@/src/components/shorturl/HeroTabs";
+import { IconFree, IconUserCheck, IconTimer, IconEnvelope, IconMegaphone, IconPencil, IconPerson } from "@/src/components/ui/icons";
+import { colors } from "@/tokens";
+import Section from "@/src/components/landing/Section";
+import StepSwitcher from "@/src/components/landing/StepSwitcher";
+import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
+import FeatureGrid from "@/src/components/landing/FeatureGrid";
+import CTABlock from "@/src/components/landing/CTABlock";
 
 export const metadata: Metadata = {
-  title: "Letteros Short URL — сокращатель ссылок",
+  title: "Letteros Short URL — сокращатель ссылок",
   description:
-    "Короткий адрес, кастомный слаг и\u00a0QR-код за\u00a0одно действие. Работает без регистрации.",
+    "Короткий адрес, кастомный слаг и QR-код за одно действие. Работает без регистрации.",
   openGraph: {
-    title: "Letteros Short URL — сокращатель ссылок",
+    title: "Letteros Short URL — сокращатель ссылок",
     description:
-      "Короткий адрес, кастомный слаг и\u00a0QR-код за\u00a0одно действие. Работает без регистрации.",
+      "Короткий адрес, кастомный слаг и QR-код за одно действие. Работает без регистрации.",
     type: "website",
   },
 };
 
-const sectionStyle = {
-  paddingBottom: "100px",
-};
-
-const featureCards = [
+const howSteps = [
   {
-    icon: <IconUserCheck />,
-    title: "Без регистрации",
-    text: "Открываете страницу и\u00a0сразу работаете. Никаких аккаунтов и\u00a0паролей.",
+    id: "paste",
+    label: "Вставьте URL",
+    description:
+      "Скопируйте любой адрес и вставьте в поле — страницу сайта, документ, ссылку с UTM-параметрами. Сервис принимает адреса любой длины и автоматически проверяет их доступность перед сокращением.",
+    screenshotCaption: "Скриншот формы с вставленной ссылкой",
+    imageSrc: "/images/shorturl/howto_1.jpg",
   },
   {
-    icon: <IconPencil />,
-    title: "Кастомный слаг",
-    text: "Прописывайте собственное окончание ссылки вместо случайного набора символов.",
+    id: "customize",
+    label: "Настройте под себя",
+    description:
+      "Задайте тематическое окончание ссылки, если хотите сделать адрес осмысленным. Отключите проверку доступности, если уверены в ссылке или не хотите лишних запросов к вашему серверу.",
+    screenshotCaption: "Скриншот настроек — чекбоксы, поле кастомного слага",
+    imageSrc: "/images/shorturl/howto_2.jpg",
   },
   {
-    icon: <IconQR />,
-    title: "QR-код",
-    text: "Генерируется вместе со\u00a0ссылкой и\u00a0скачивается в\u00a0PNG.",
-  },
-  {
-    icon: <IconShieldCheck />,
-    title: "Проверка URL",
-    text: "Сервис проверяет доступность страницы до\u00a0сокращения ссылки.",
-  },
-  {
-    icon: <IconTimer />,
-    title: "Срок 90 дней",
-    text: "Дата деактивации видна сразу после создания ссылки.",
-  },
-  {
-    icon: <IconFree />,
-    title: "Бесплатно",
-    text: "Без лимитов и\u00a0скрытых условий.",
-  },
-];
-
-const howsSteps = [
-  {
-    num: "01",
-    title: "Вставьте URL",
-    text: "Скопируйте любой адрес и\u00a0вставьте в\u00a0поле\u00a0— страницу, документ, ссылку с\u00a0UTM-параметрами.",
-  },
-  {
-    num: "02",
-    title: "Настройте под себя",
-    text: "Задайте свой слаг, включите генерацию QR-кода или отключите проверку доступности, если уверены в\u00a0ссылке.",
-  },
-  {
-    num: "03",
-    title: "Скопируйте результат",
-    text: "Короткая ссылка готова. Копируйте одной кнопкой или скачайте QR-код в\u00a0PNG.",
-  },
-];
-
-const audienceCards = [
-  {
-    title: "Email-маркетологи",
-    text: "UTM-метки делают ссылку нечитаемой. Короткий адрес выглядит опрятно в\u00a0любом почтовике и\u00a0не\u00a0ломает вёрстку письма.",
-  },
-  {
-    title: "SMM-специалисты",
-    text: "В\u00a0описании профиля и\u00a0в\u00a0постах место ограничено. Кастомный слаг делает ссылку узнаваемой даже без контекста.",
-  },
-  {
-    title: "Дизайнеры и\u00a0редакторы",
-    text: "Длинный URL в\u00a0макете, презентации или документе\u00a0— визуальный мусор. Короткий адрес не\u00a0отвлекает от\u00a0содержания.",
-  },
-  {
-    title: "Все остальные",
-    text: "Иногда нужно просто отправить ссылку, не\u00a0превращая её в\u00a0абзац.",
-  },
+    id: "copy",
+    label: "Скопируйте результат",
+    description:
+      "Короткая ссылка готова. Скопируйте её одной кнопкой. Дата деактивации видна сразу — ссылка работает 90 дней с момента создания.",
+    screenshotCaption: "Скриншот результата — короткая ссылка + кнопка копирования",
+    imageSrc: "/images/shorturl/howto_3.jpg",
+  }
 ];
 
 export default function ShortUrlPage() {
@@ -122,7 +73,7 @@ export default function ShortUrlPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Сокращение ссылок
+                Letteros Short URL
               </Typography>
               <Typography
                 level="body"
@@ -130,167 +81,157 @@ export default function ShortUrlPage() {
                 color="rgba(255,255,255,0.7)"
                 style={{ maxWidth: "480px", margin: "0 auto" }}
               >
-                Превращает любой длинный адрес в{"\u00a0"}короткую ссылку.
+                Превращает любой длинный адрес в короткую ссылку.
                 <br />
-                Кастомный слаг, QR-код и{"\u00a0"}проверка URL.
+                Кастомный слаг, QR-код и проверка URL.
               </Typography>
             </div>
 
-            <ShortenForm />
+            <HeroTabs />
           </Container>
         </section>
 
-        {/* Audience */}
-        <section
-          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Для кого этот сервис"
-        >
-          <Container>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Всем, кто работает со{"\u00a0"}ссылками
-            </Typography>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "30px",
-              }}
-            >
-              {audienceCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <Typography
-                    level="h4"
-                    color={colors.text.main}
-                    style={{ marginBottom: "16px" }}
-                  >
-                    {card.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {card.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+        {/* Для кого */}
+        <Section bg="alt">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Всем, кто работает со ссылками
+          </Typography>
 
-        {/* How it works */}
-        <section style={{ ...sectionStyle, paddingTop: "100px" }} aria-label="Как это работает">
-          <Container>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Как это работает
-            </Typography>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-                gap: "30px",
-              }}
-            >
-              {howsSteps.map((step) => (
-                <div
-                  key={step.num}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "36px",
-                      fontWeight: 700,
-                      color: colors.accent.blue,
-                      marginBottom: "16px",
-                      fontFamily: "var(--l-font-family)",
-                    }}
-                  >
-                    {step.num}
-                  </div>
-                  <Typography
-                    level="h4"
-                    color={colors.text.main}
-                    style={{ marginBottom: "12px" }}
-                  >
-                    {step.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {step.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+          <style>{`
+            .l-audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
+            @media (max-width: 767px) { .l-audience-grid { grid-template-columns: 1fr; gap: 40px; } }
+          `}</style>
+          <div className="l-audience-grid">
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconEnvelope size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Email-маркетологи
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Ссылки с UTM-метками могут занимать несколько строк и выглядят как случайный набор символов. В email-рассылке такой адрес ломает вёрстку, вызывает настороженность у получателя и снижает кликабельность.
+              </p>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
+                Короткая ссылка решает все эти проблемы. Она компактная, выглядит аккуратно в любом почтовом клиенте и не вызывает подозрений. Тематическое окончание делает адрес осмысленным — получатель видит <code>letteros.com/s/price-list</code>, а не <code>letteros.com/s/x7k9m2</code>.
+              </p>
+            </article>
 
-        {/* Features */}
-        <section
-          style={{ ...sectionStyle, paddingTop: "80px", background: colors.bg.alt }}
-          aria-label="Возможности сервиса"
-        >
-          <Container>
-            <style>{`
-              @media (max-width: 900px) { .su-features-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-              @media (max-width: 600px) { .su-features-grid { grid-template-columns: 1fr !important; } }
-            `}</style>
-            <Typography
-              level="h2Sections"
-              color={colors.text.main}
-              style={{ marginBottom: "48px", textAlign: "center" }}
-            >
-              Возможности сервиса
-            </Typography>
-            <div
-              className="su-features-grid"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "30px",
-              }}
-            >
-              {featureCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    background: colors.bg.white,
-                    borderRadius: "20px",
-                    boxShadow: shadows.cardSoft,
-                    padding: "40px",
-                  }}
-                >
-                  <div style={{ marginBottom: "16px", color: colors.text.main }}>{card.icon}</div>
-                  <Typography
-                    level="h4"
-                    color={colors.text.main}
-                    style={{ marginBottom: "16px" }}
-                  >
-                    {card.title}
-                  </Typography>
-                  <Typography level="body" as="p" color={colors.text.main}>
-                    {card.text}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconMegaphone size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                SMM-специалисты
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                В описании профиля и в постах место ограничено. Длинная ссылка с параметрами отслеживания занимает половину допустимого объёма и отвлекает от основного сообщения.
+              </p>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
+                Короткий адрес с тематическим окончанием решает обе задачи: экономит символы и делает ссылку узнаваемой. Подписчик видит понятный адрес и переходит по нему охотнее, чем по случайному набору букв.
+              </p>
+            </article>
+
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPencil size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Дизайнеры и редакторы
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Длинный URL в макете, презентации или документе — визуальный мусор. Он занимает место, портит внешний вид и отвлекает от содержания. Особенно заметно в печатных материалах, где ссылку невозможно спрятать за текстом.
+              </p>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
+                Короткий адрес не отвлекает от содержания. Его можно разместить на визитке, в буклете или на слайде, и он останется читаемым.
+              </p>
+            </article>
+
+            <article>
+              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPerson size={40} /></div>
+              <Typography level="h4" style={{ marginBottom: "16px" }}>
+                Все остальные
+              </Typography>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
+                Иногда нужно отправить ссылку в мессенджере, вставить в комментарий или продиктовать по телефону. Адрес из восьмидесяти символов с амперсандами и знаками вопроса для этого не подходит.
+              </p>
+              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
+                Сокращатель превращает любую ссылку в короткий и понятный адрес за одно действие. Без регистрации, без ограничений, без лишних шагов.
+              </p>
+            </article>
+          </div>
+        </Section>
+
+        {/* Как это работает */}
+        <Section bg="white">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Как это работает
+          </Typography>
+          <StepSwitcher steps={howSteps} />
+        </Section>
+
+        {/* Возможности сервиса */}
+        <Section bg="white">
+          <Typography
+            level="h2Sections"
+            style={{ marginBottom: "48px", textAlign: "center" }}
+          >
+            Возможности сервиса
+          </Typography>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "60px" }}>
+            <FeatureHighlight
+              title="Кастомный слаг"
+              paragraphs={[
+                "Кастомный слаг заменяет случайный код на осмысленное слово. Вместо <code style=\"background:#F1F1F1;padding:2px 6px;border-radius:4px;font-size:14px\">letteros.com/s/x7k9m2</code> вы получаете <code style=\"background:#F1F1F1;padding:2px 6px;border-radius:4px;font-size:14px\">letteros.com/s/price-list</code> — такой адрес можно разместить на слайде или продиктовать по телефону. Допустимые символы — латиница, цифры и дефис. Длина — от трёх до тридцати символов."
+              ]}
+              imageSrc="/images/shorturl/features_1.jpg"
+              screenshotCaption="Визуал — пример кастомного слага"
+            />
+            <FeatureHighlight
+              title="Генератор QR-кода для любой ссылки"
+              paragraphs={[
+                "QR-код нужен там, где ссылку нельзя нажать: на печатных материалах, в офлайн-рекламе, на упаковке. Генератор работает на отдельной вкладке — вставьте любую ссылку и скачайте QR-код в PNG."
+                
+              ]}
+              imageSrc="/images/shorturl/features_2.jpg"
+              screenshotCaption="Визуал — пример QR-кода"
+              reverse
+            />
+            <FeatureHighlight
+              title="Проверка доступности перед сокращением"
+              paragraphs={[
+                "Сервис проверяет, что страница по указанному адресу существует и отвечает. Это защищает от распространения нерабочих ссылок. Проверка включена по умолчанию, но её можно отключить одним чекбоксом."
+                
+              ]}
+              imageSrc="/images/shorturl/features_3.jpg"
+              screenshotCaption="Визуал — пример проверки URL"
+            />
+          </div>
+
+          <FeatureGrid
+            features={[
+              {
+                icon: <IconUserCheck />,
+                title: "Без регистрации",
+                text: "Открываете страницу и сразу работаете. Никаких аккаунтов и паролей.",
+              },
+              {
+                icon: <IconTimer />,
+                title: "Срок 90 дней",
+                text: "Дата деактивации видна сразу после создания ссылки.",
+              },
+              {
+                icon: <IconFree />,
+                title: "Бесплатно",
+                text: "Без лимитов и скрытых условий.",
+              }
+            ]}
+          />
+        </Section>
+
+        {/* CTA */}
+        <CTABlock bannerSrc="/images/shorturl/cta_banner.jpg" />
       </main>
 
       <Footer />
