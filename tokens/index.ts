@@ -15,8 +15,8 @@ export const colors = {
     alt: "#F8F8F8",
   },
   accent: {
-    blue: "#001DFF",
-    blueHover: "#4B60FF",
+    blue: "#3072ED",
+    blueHover: "#0A51D7",
     blueNew: "#3072ED",
     blueNewHover: "#0A51D7",
   },
@@ -33,7 +33,7 @@ export const colors = {
   cookie: "#F2F2F2",
   cardCategoryDarker: "#0015BC",
   gradient: {
-    hows: "linear-gradient(90deg, #001DFF -30.81%, #8000FF 60.48%)",
+    hows: "linear-gradient(90deg, #3072ED -30.81%, #8000FF 60.48%)",
   },
 } as const;
 
@@ -176,8 +176,8 @@ export const buttonVariants = {
     hoverBg: "#151515", hoverColor: "#ffffff",
   },
   blue: {
-    bg: "#001DFF", color: "#ffffff", border: "none",
-    hoverBg: "#4B60FF", hoverColor: "#ffffff",
+    bg: "#3072ED", color: "#ffffff", border: "none",
+    hoverBg: "#0A51D7", hoverColor: "#ffffff",
   },
   blueNew: {
     bg: "#3072ED", color: "#ffffff", border: "none",
@@ -196,8 +196,8 @@ export const buttonVariants = {
     hoverBg: "#ffffff", hoverColor: "#151515",
   },
   transparentBlue: {
-    bg: "transparent", color: "#001DFF", border: "1px solid #001DFF",
-    hoverBg: "#4B60FF", hoverColor: "#ffffff",
+    bg: "transparent", color: "#3072ED", border: "1px solid #3072ED",
+    hoverBg: "#0A51D7", hoverColor: "#ffffff",
   },
   transparentBlueNew: {
     bg: "transparent", color: "#3072ED", border: "1px solid #3072ED",

@@ -33,8 +33,15 @@ export default function StepSwitcher({ steps }: StepSwitcherProps) {
         .l-step-switcher__steps {
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          gap: 40px;
+          gap: 20px;
+        }
+        .l-step-switcher__steps > div {
+          flex: 1;
+        }
+        @media (max-width: ${breakpoints.mobile}) {
+          .l-step-switcher__steps > div {
+            flex: 0 0 auto;
+          }
         }
         .l-step-switcher__visual {
           display: flex;
@@ -65,11 +72,10 @@ export default function StepSwitcher({ steps }: StepSwitcherProps) {
       `}</style>
       <div className="l-step-switcher">
         <div className="l-step-switcher__steps">
-          {steps.map((step, idx) => {
+          {steps.map((step) => {
             const isActive = step.id === activeId;
             const isHovered = step.id === hoveredId && !isActive;
             const parts = step.label.split(" \u2014 ");
-            const number = String(idx + 1);
             const title = parts[1] || parts[0];
             return (
               <div
@@ -79,42 +85,48 @@ export default function StepSwitcher({ steps }: StepSwitcherProps) {
                 onClick={() => setActiveId(step.id)}
                 onMouseEnter={() => setHoveredId(step.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  gap: "20px",
+                  alignItems: "stretch",
+                }}
               >
                 <div
                   style={{
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    color: isActive ? colors.accent.blue : isHovered ? colors.accent.blueHover : colors.text.placeholder,
-                    marginBottom: "8px",
-                    transition: "color 0.25s",
+                    flexShrink: 0,
+                    width: "4px",
+                    alignSelf: "stretch",
+                    borderRadius: "2px",
+                    backgroundColor: isActive ? colors.accent.blue : colors.border.default,
+                    transition: "background-color 0.25s",
                   }}
-                >
-                  {number}
+                />
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <h4
+                    style={{
+                      fontSize: "28px",
+                      fontWeight: 700,
+                      lineHeight: "30.8px",
+                      color: isActive ? colors.text.main : isHovered ? colors.text.main : colors.text.placeholder,
+                      marginBottom: "12px",
+                      transition: "color 0.25s",
+                    }}
+                  >
+                    {title}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "16px",
+                      lineHeight: "22.4px",
+                      color: isActive ? colors.text.main : isHovered ? colors.text.main : colors.text.placeholder,
+                      margin: 0,
+                      transition: "color 0.25s",
+                    }}
+                  >
+                    {step.description}
+                  </p>
                 </div>
-                <h4
-                  style={{
-                    fontSize: "28px",
-                    fontWeight: 700,
-                    lineHeight: "30.8px",
-                    color: isActive ? colors.text.main : isHovered ? colors.text.main : colors.text.placeholder,
-                    marginBottom: "12px",
-                    transition: "color 0.25s",
-                  }}
-                >
-                  {title}
-                </h4>
-                <p
-                  style={{
-                    fontSize: "16px",
-                    lineHeight: "22.4px",
-                    color: isActive ? colors.text.main : isHovered ? colors.text.main : colors.text.placeholder,
-                    margin: 0,
-                    transition: "color 0.25s",
-                  }}
-                >
-                  {step.description}
-                </p>
               </div>
             );
           })}
