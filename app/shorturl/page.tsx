@@ -74,7 +74,7 @@ export default function ShortUrlPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Letteros Short URL
+                Сокращатель ссылок
               </Typography>
               <Typography
                 level="body"

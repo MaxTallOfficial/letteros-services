@@ -44,6 +44,7 @@ const headerMainStyle: CSSProperties = {
   height: "50px",
   padding: "0 24px",
   background: colors.surface.dark,
+  position: "relative",
 };
 
 const logoStyle: CSSProperties = {
@@ -59,8 +60,9 @@ const navStyle: CSSProperties = {
   display: "flex",
   alignItems: "center",
   columnGap: "40px",
-  marginLeft: "40px",
-  flexGrow: 1,
+  position: "absolute",
+  left: "50%",
+  transform: "translateX(-50%)",
 };
 
 const navLinkStyle: CSSProperties = {
@@ -101,7 +103,6 @@ const dropdownListStyle: CSSProperties = {
 const rightGroupStyle: CSSProperties = {
   display: "flex",
   alignItems: "center",
-  marginLeft: "auto",
   flexShrink: 0,
 };
 

@@ -74,13 +74,13 @@ export default function TypographPage() {
                 color={colors.text.white}
                 style={{ marginBottom: "20px" }}
               >
-                Letteros Typograph
+                Типограф
               </Typography>
               <Typography
                 level="body"
                 as="p"
                 color="rgba(255,255,255,0.7)"
-                style={{ maxWidth: "480px", margin: "0 auto" }}
+                style={{ maxWidth: "640px", margin: "0 auto" }}
               >
                 Приводит текст в порядок по правилам русской типографики.
                 <br />

@@ -100,7 +100,7 @@ export default function AudienceCards({ cards }: AudienceCardsProps) {
         .l-audience__point {
           display: flex;
           gap: 12px;
-          align-items: flex-start;
+          align-items: center;
           font-size: 15px;
           line-height: 21px;
           color: ${colors.text.main};
@@ -108,7 +108,8 @@ export default function AudienceCards({ cards }: AudienceCardsProps) {
         .l-audience__point-icon {
           flex-shrink: 0;
           color: ${colors.accent.blue};
-          margin-top: 1px;
+          display: flex;
+          align-items: center;
         }
         @media (max-width: ${breakpoints.mobile}) {
           .l-audience__card,
