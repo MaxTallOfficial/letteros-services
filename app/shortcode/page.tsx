@@ -4,13 +4,14 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
-import { IconFree, IconCode, IconBolt, IconEnvelope, IconDocument, IconPerson } from "@/src/components/ui/icons";
+import { IconFree, IconCode, IconBolt, IconEnvelope, IconDocument, IconPerson, IconPointScissors, IconPointLayers, IconPointPackage, IconPointFile, IconPointGlobe, IconPointLock, IconPointWand, IconPointClipboard, IconPointCheck } from "@/src/components/ui/icons";
 import { colors } from "@/tokens";
 import Section from "@/src/components/landing/Section";
 import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
 import FeatureGrid from "@/src/components/landing/FeatureGrid";
 import CTABlock from "@/src/components/landing/CTABlock";
+import AudienceCards from "@/src/components/landing/AudienceCards";
 
 export const metadata: Metadata = {
   title: "Letteros Shortcode — компрессор кода",
@@ -93,58 +94,48 @@ export default function ShortcodePage() {
 
         {/* Для кого */}
         <Section bg="alt">
-          <Typography
-            level="h2Sections"
-            style={{ marginBottom: "48px", textAlign: "center" }}
-          >
-            Всем, кто работает с кодом
-          </Typography>
-
-          <style>{`
-            .l-audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
-            @media (max-width: 767px) { .l-audience-grid { grid-template-columns: 1fr; gap: 40px; } }
-          `}</style>
-          <div className="l-audience-grid">
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconEnvelope size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Email-верстальщики
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                HTML-письмо перед отправкой должно весить как можно меньше — почтовые клиенты обрезают письма, превышающие допустимый объём. Минификация убирает комментарии, пробельные символы и необязательные атрибуты, сохраняя структуру.
-              </p>
-                          </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconCode size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Фронтенд-разработчики
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Иногда нужно сжать конкретный файл или блок кода перед вставкой в продакшен, не запуская сборщик. Компрессор делает ровно одну вещь — принимает код и возвращает минифицированную версию. Без настройки окружения.
-              </p>
-                          </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconDocument size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Контент-менеджеры
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                HTML-виджеты, встраиваемые блоки, сторонние скрипты — всё это можно сжать перед добавлением на сайт. Навыков программирования не требуется: вставьте код, скопируйте результат.
-              </p>
-                          </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPerson size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Все остальные
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
-                Иногда нужно убрать из кода лишнее. Компрессор делает это за секунду — без регистрации и без передачи кода на сервер.
-              </p>
-            </article>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <Typography level="h2Sections" style={{ marginBottom: "16px" }}>
+              Для кого
+            </Typography>
+            <p style={{ fontSize: "18px", lineHeight: "25.2px", color: colors.text.main, margin: 0, opacity: 0.7 }}>
+              Для специалистов, которые работают с HTML, CSS и JS каждый день
+            </p>
           </div>
+
+          <AudienceCards cards={[
+            {
+              title: "Email-верстальщики",
+              description: "Компрессор убирает из HTML-письма комментарии, пробельные символы и необязательные атрибуты. Структура и вёрстка сохраняются, а объём кода сокращается.",
+              points: [
+                { icon: <IconPointScissors />, text: "Убирает всё, что не влияет на отображение" },
+                { icon: <IconPointLayers />, text: "Сохраняет структуру и вёрстку письма" },
+                { icon: <IconPointPackage />, text: "Сокращает вес HTML перед отправкой" },
+              ],
+            },
+            {
+              title: "Фронтенд-разработчики",
+              description: "Компрессор принимает код и возвращает минифицированную версию прямо в браузере. Подходит для разовых задач, где сборщик или терминал избыточны.",
+              points: [
+                { icon: <IconPointFile />, text: "Минификация одного файла без сборщика" },
+                { icon: <IconPointGlobe />, text: "Работает в браузере — без установки и настройки" },
+                { icon: <IconPointLock />, text: "Код остаётся на вашем устройстве" },
+              ],
+            },
+            {
+              title: "Контент-менеджеры",
+              description: "Компрессор сжимает HTML-виджеты, встраиваемые блоки и сторонние скрипты перед добавлением на сайт. Достаточно вставить код — результат появится автоматически.",
+              points: [
+                { icon: <IconPointWand />, text: "Сжатие кода без технических знаний" },
+                { icon: <IconPointClipboard />, text: "Автоматическая обработка при вставке" },
+                { icon: <IconPointCheck />, text: "Чистый результат для вставки на страницу" },
+              ],
+            },
+            {
+              title: "Все остальные",
+              description: "Компрессор очищает HTML, CSS и JS от лишнего за секунды. Код обрабатывается в браузере и не передаётся на сторонний сервер.",
+            },
+          ]} />
         </Section>
 
         {/* Как это работает */}

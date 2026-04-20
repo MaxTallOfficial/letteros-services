@@ -4,13 +4,14 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { TypographTool } from "@/src/components/typograph/TypographTool";
-import { IconBolt, IconQuotes, IconFree, IconPencil, IconDocument, IconEnvelope, IconPerson } from "@/src/components/ui/icons";
+import { IconBolt, IconQuotes, IconFree, IconPencil, IconDocument, IconEnvelope, IconPerson, IconPointBook, IconPointType, IconPointClick, IconPointCheck, IconPointClipboard, IconPointBrain, IconPointQuote, IconPointClock } from "@/src/components/ui/icons";
 import { colors } from "@/tokens";
 import Section from "@/src/components/landing/Section";
 import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
 import FeatureGrid from "@/src/components/landing/FeatureGrid";
 import CTABlock from "@/src/components/landing/CTABlock";
+import AudienceCards from "@/src/components/landing/AudienceCards";
 
 export const metadata: Metadata = {
   title: "Letteros Typograph — типограф онлайн",
@@ -93,58 +94,48 @@ export default function TypographPage() {
 
         {/* Для кого */}
         <Section bg="alt">
-          <Typography
-            level="h2Sections"
-            style={{ marginBottom: "48px", textAlign: "center" }}
-          >
-            Всем, кто работает с текстом
-          </Typography>
-
-          <style>{`
-            .l-audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
-            @media (max-width: 767px) { .l-audience-grid { grid-template-columns: 1fr; gap: 40px; } }
-          `}</style>
-          <div className="l-audience-grid">
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPencil size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Копирайтеры и редакторы
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Текст после написания нуждается в типографической чистке. Делать это вручную — рутина, которая отнимает время и пропускает ошибки. Типограф применяет правила русской типографики автоматически — от кавычек до спецсимволов.
-              </p>
-                          </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconDocument size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Контент-менеджеры
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Текст из CMS, из писем или из Google Docs приходит с прямыми кавычками и дефисами вместо тире. Вставить в типограф перед публикацией — одно действие, которое решает все проблемы разом.
-              </p>
-                          </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconEnvelope size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Email-маркетологи
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Типографически чистый текст в рассылке — признак профессионализма. Разница между дефисом и тире видна читателю, даже если он не может её назвать. Типограф обрабатывает текст перед вёрсткой за секунду.
-              </p>
-                          </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPerson size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Все остальные
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
-                Любой текст, который кто-то будет читать, заслуживает правильных кавычек и тире. Типограф приводит в порядок всё за секунду.
-              </p>
-            </article>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <Typography level="h2Sections" style={{ marginBottom: "16px" }}>
+              Для кого
+            </Typography>
+            <p style={{ fontSize: "18px", lineHeight: "25.2px", color: colors.text.main, margin: 0, opacity: 0.7 }}>
+              Для специалистов, которые каждый день готовят текст к публикации
+            </p>
           </div>
+
+          <AudienceCards cards={[
+            {
+              title: "Копирайтеры и редакторы",
+              description: "Типограф автоматически применяет правила русской типографики: заменяет прямые кавычки на «ёлочки», расставляет тире, убирает лишние пробелы и добавляет неразрывные. Текст готов к публикации за секунды.",
+              points: [
+                { icon: <IconPointBook />, text: "Полный набор правил русской типографики" },
+                { icon: <IconPointType />, text: "Кавычки, тире, пробелы и спецсимволы — автоматически" },
+                { icon: <IconPointClick />, text: "Обработка всего текста за одно действие" },
+              ],
+            },
+            {
+              title: "Контент-менеджеры",
+              description: "Типограф приводит в порядок текст из любого источника — CMS, документа, письма. Достаточно вставить текст, и результат появится автоматически.",
+              points: [
+                { icon: <IconPointCheck />, text: "Чистит текст из любого источника" },
+                { icon: <IconPointClipboard />, text: "Автоматическая обработка при вставке" },
+                { icon: <IconPointBrain />, text: "Не нужно запоминать правила типографики" },
+              ],
+            },
+            {
+              title: "Email-маркетологи",
+              description: "Типограф обрабатывает текст рассылки перед вёрсткой: корректные кавычки, правильные тире, отсутствие висячих предлогов. Аккуратная типографика формирует впечатление о бренде.",
+              points: [
+                { icon: <IconPointQuote />, text: "Корректные кавычки и тире в тексте рассылки" },
+                { icon: <IconPointCheck />, text: "Отсутствие висячих предлогов в каждом письме" },
+                { icon: <IconPointClock />, text: "Обработка за секунды перед вёрсткой" },
+              ],
+            },
+            {
+              title: "Все остальные",
+              description: "Типограф приводит в порядок любой текст — от письма клиенту до подписи в презентации. Обработка происходит в браузере, текст никуда не отправляется.",
+            },
+          ]} />
         </Section>
 
         {/* Как это работает */}

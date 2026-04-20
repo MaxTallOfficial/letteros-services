@@ -4,13 +4,14 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { HeroTabs } from "@/src/components/shorturl/HeroTabs";
-import { IconFree, IconUserCheck, IconTimer, IconEnvelope, IconMegaphone, IconPencil, IconPerson } from "@/src/components/ui/icons";
+import { IconFree, IconUserCheck, IconTimer, IconEnvelope, IconMegaphone, IconPencil, IconPerson, IconPointButton, IconPointSparkle, IconPointShield, IconPointCompress, IconPointStar, IconPointLink, IconPointEye, IconPointPhone, IconPointPrint } from "@/src/components/ui/icons";
 import { colors } from "@/tokens";
 import Section from "@/src/components/landing/Section";
 import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
 import FeatureGrid from "@/src/components/landing/FeatureGrid";
 import CTABlock from "@/src/components/landing/CTABlock";
+import AudienceCards from "@/src/components/landing/AudienceCards";
 
 export const metadata: Metadata = {
   title: "Letteros Short URL — сокращатель ссылок",
@@ -93,70 +94,52 @@ export default function ShortUrlPage() {
 
         {/* Для кого */}
         <Section bg="alt">
-          <Typography
-            level="h2Sections"
-            style={{ marginBottom: "48px", textAlign: "center" }}
-          >
-            Всем, кто работает со ссылками
-          </Typography>
-
-          <style>{`
-            .l-audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 60px; }
-            @media (max-width: 767px) { .l-audience-grid { grid-template-columns: 1fr; gap: 40px; } }
-          `}</style>
-          <div className="l-audience-grid">
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconEnvelope size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Email-маркетологи
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Ссылки с UTM-метками могут занимать несколько строк и выглядят как случайный набор символов. В email-рассылке такой адрес ломает вёрстку, вызывает настороженность у получателя и снижает кликабельность.
-              </p>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
-                Короткая ссылка решает все эти проблемы. Она компактная, выглядит аккуратно в любом почтовом клиенте и не вызывает подозрений. Тематическое окончание делает адрес осмысленным — получатель видит <code>letteros.com/s/price-list</code>, а не <code>letteros.com/s/x7k9m2</code>.
-              </p>
-            </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconMegaphone size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                SMM-специалисты
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                В описании профиля и в постах место ограничено. Длинная ссылка с параметрами отслеживания занимает половину допустимого объёма и отвлекает от основного сообщения.
-              </p>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
-                Короткий адрес с тематическим окончанием решает обе задачи: экономит символы и делает ссылку узнаваемой. Подписчик видит понятный адрес и переходит по нему охотнее, чем по случайному набору букв.
-              </p>
-            </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPencil size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Дизайнеры и редакторы
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Длинный URL в макете, презентации или документе — визуальный мусор. Он занимает место, портит внешний вид и отвлекает от содержания. Особенно заметно в печатных материалах, где ссылку невозможно спрятать за текстом.
-              </p>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
-                Короткий адрес не отвлекает от содержания. Его можно разместить на визитке, в буклете или на слайде, и он останется читаемым.
-              </p>
-            </article>
-
-            <article>
-              <div style={{ color: colors.accent.blue, marginBottom: "16px" }}><IconPerson size={40} /></div>
-              <Typography level="h4" style={{ marginBottom: "16px" }}>
-                Все остальные
-              </Typography>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: "0 0 12px" }}>
-                Иногда нужно отправить ссылку в мессенджере, вставить в комментарий или продиктовать по телефону. Адрес из восьмидесяти символов с амперсандами и знаками вопроса для этого не подходит.
-              </p>
-              <p style={{ fontSize: "16px", lineHeight: "22.4px", margin: 0 }}>
-                Сокращатель превращает любую ссылку в короткий и понятный адрес за одно действие. Без регистрации, без ограничений, без лишних шагов.
-              </p>
-            </article>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <Typography level="h2Sections" style={{ marginBottom: "16px" }}>
+              Для кого
+            </Typography>
+            <p style={{ fontSize: "18px", lineHeight: "25.2px", color: colors.text.main, margin: 0, opacity: 0.7 }}>
+              Для специалистов и команд, которые используют ссылки в коммуникации каждый день
+            </p>
           </div>
+
+          <AudienceCards cards={[
+            {
+              title: "Email-маркетологи",
+              description: "Короткая ссылка с понятным окончанием выглядит профессионально в тексте письма и не вызывает настороженности у получателя. Подписчик видит осмысленный адрес, а не случайный набор символов.",
+              points: [
+                { icon: <IconPointButton />, text: "Аккуратный адрес в тексте и кнопках рассылки" },
+                { icon: <IconPointSparkle />, text: "Понятное окончание вместо случайных символов" },
+                { icon: <IconPointShield />, text: "Доверие получателя к ссылке в письме" },
+              ],
+              imageSrc: "/images/shorturl/audience_1.png",
+            },
+            {
+              title: "SMM-специалисты",
+              description: "Короткий адрес с собственным окончанием экономит символы в любом тексте — от поста до описания профиля. Ссылка становится запоминаемой и сообщает суть ещё до перехода.",
+              points: [
+                { icon: <IconPointCompress />, text: "Экономит символы в постах, описаниях и комментариях" },
+                { icon: <IconPointStar />, text: "Собственное окончание делает ссылку узнаваемой" },
+                { icon: <IconPointLink />, text: "Один адрес для всех площадок" },
+              ],
+              imageSrc: "/images/shorturl/audience_2.png",
+            },
+            {
+              title: "Дизайнеры и редакторы",
+              description: "Короткий адрес не отвлекает от содержания макета, презентации или документа. Его можно разместить на визитке, слайде или в буклете — и он останется читаемым.",
+              points: [
+                { icon: <IconPointEye />, text: "Читаемая ссылка на слайде или визитке" },
+                { icon: <IconPointPhone />, text: "Можно продиктовать по телефону или запомнить" },
+                { icon: <IconPointPrint />, text: "Не нарушает оформление печатных материалов" },
+              ],
+              imageSrc: "/images/shorturl/audience_3.png",
+            },
+            {
+              title: "Все остальные",
+              description: "Сокращатель превращает любую ссылку в короткий и понятный адрес за одно действие. Удобно для отправки в чат, вставки в комментарий или устного диктования.",
+              imageSrc: "/images/shorturl/audience_4.png",
+            },
+          ]} />
         </Section>
 
         {/* Как это работает */}
