@@ -112,6 +112,7 @@ export default function ShortcodePage() {
                 { icon: <IconPointLayers />, text: "Сохраняет структуру и вёрстку письма" },
                 { icon: <IconPointPackage />, text: "Сокращает вес HTML перед отправкой" },
               ],
+              imageSrc: "/images/shortcode/audience_1.png",
             },
             {
               title: "Фронтенд-разработчики",
@@ -121,6 +122,7 @@ export default function ShortcodePage() {
                 { icon: <IconPointGlobe />, text: "Работает в браузере — без установки и настройки" },
                 { icon: <IconPointLock />, text: "Код остаётся на вашем устройстве" },
               ],
+              imageSrc: "/images/shortcode/audience_2.png",
             },
             {
               title: "Контент-менеджеры",
@@ -130,10 +132,12 @@ export default function ShortcodePage() {
                 { icon: <IconPointClipboard />, text: "Автоматическая обработка при вставке" },
                 { icon: <IconPointCheck />, text: "Чистый результат для вставки на страницу" },
               ],
+              imageSrc: "/images/shortcode/audience_3.png",
             },
             {
               title: "Все остальные",
               description: "Компрессор очищает HTML, CSS и JS от лишнего за секунды. Код обрабатывается в браузере и не передаётся на сторонний сервер.",
+              imageSrc: "/images/shortcode/audience_4.png",
             },
           ]} />
         </Section>

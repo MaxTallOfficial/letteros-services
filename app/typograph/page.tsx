@@ -112,6 +112,7 @@ export default function TypographPage() {
                 { icon: <IconPointType />, text: "Кавычки, тире, пробелы и спецсимволы — автоматически" },
                 { icon: <IconPointClick />, text: "Обработка всего текста за одно действие" },
               ],
+              imageSrc: "/images/typograph/audience_1.png",
             },
             {
               title: "Контент-менеджеры",
@@ -121,6 +122,7 @@ export default function TypographPage() {
                 { icon: <IconPointClipboard />, text: "Автоматическая обработка при вставке" },
                 { icon: <IconPointBrain />, text: "Не нужно запоминать правила типографики" },
               ],
+              imageSrc: "/images/typograph/audience_2.png",
             },
             {
               title: "Email-маркетологи",
@@ -130,10 +132,12 @@ export default function TypographPage() {
                 { icon: <IconPointCheck />, text: "Отсутствие висячих предлогов в каждом письме" },
                 { icon: <IconPointClock />, text: "Обработка за секунды перед вёрсткой" },
               ],
+              imageSrc: "/images/typograph/audience_3.png",
             },
             {
               title: "Все остальные",
               description: "Типограф приводит в порядок любой текст — от письма клиенту до подписи в презентации. Обработка происходит в браузере, текст никуда не отправляется.",
+              imageSrc: "/images/typograph/audience_4.png",
             },
           ]} />
         </Section>
