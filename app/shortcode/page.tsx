@@ -4,12 +4,10 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { CompressorTool } from "@/src/components/shortcode/CompressorTool";
-import { IconFree, IconCode, IconBolt, IconEnvelope, IconDocument, IconPerson, IconPointScissors, IconPointLayers, IconPointPackage, IconPointFile, IconPointGlobe, IconPointLock, IconPointWand, IconPointClipboard, IconPointCheck } from "@/src/components/ui/icons";
 import { colors } from "@/tokens";
 import Section from "@/src/components/landing/Section";
 import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
-import FeatureGrid from "@/src/components/landing/FeatureGrid";
 import CTABlock from "@/src/components/landing/CTABlock";
 import AudienceCards from "@/src/components/landing/AudienceCards";
 
@@ -30,7 +28,7 @@ const howSteps = [
     id: "lang",
     label: "Выберите язык",
     description:
-      "Переключите вкладку на HTML, CSS или JS. Каждая вкладка работает независимо: содержимое сохраняется при переключении. Можно параллельно сжимать HTML-шаблон и CSS-файл, не теряя результаты.",
+      "Откройте вкладку HTML, CSS или JS под нужный код. Каждая работает независимо — содержимое сохраняется при переключении, можно параллельно сжимать шаблон письма и таблицу стилей.",
     screenshotCaption: "Скриншот с выбором вкладки HTML/CSS/JS",
     imageSrc: "/images/shortcode/howto_1.jpg",
   },
@@ -38,7 +36,7 @@ const howSteps = [
     id: "paste",
     label: "Вставьте код",
     description:
-      "Скопируйте фрагмент и вставьте в левое поле. Сжатый результат появится в правом поле автоматически — нажимать ничего не нужно. Статистика под полями покажет размер до и после в символах и байтах.",
+      "Скопируйте фрагмент в левое поле — сжатый результат появится в правом автоматически, кнопку нажимать не нужно. Статистика под полями покажет размер до и после в символах и байтах.",
     screenshotCaption: "Скриншот с вставленным кодом и результатом",
     imageSrc: "/images/shortcode/howto_2.jpg",
   },
@@ -46,10 +44,10 @@ const howSteps = [
     id: "copy",
     label: "Скопируйте результат",
     description:
-      "Нажмите кнопку копирования в поле результата. Минифицированный код готов к вставке — в письмо, на сайт, в сборку.",
+      "Нажмите кнопку копирования — минифицированный код готов к вставке в письмо, на сайт или в сборку проекта.",
     screenshotCaption: "Скриншот результата со статистикой и кнопкой копирования",
     imageSrc: "/images/shortcode/howto_3.jpg",
-  }
+  },
 ];
 
 export default function ShortcodePage() {
@@ -80,11 +78,9 @@ export default function ShortcodePage() {
                 level="body"
                 as="p"
                 color="rgba(255,255,255,0.7)"
-                style={{ maxWidth: "480px", margin: "0 auto" }}
+                style={{ maxWidth: "640px", margin: "0 auto" }}
               >
-                Сжимает HTML, CSS и JS до минимального размера.
-                <br />
-                Работает в браузере, код остаётся у вас.
+                Сожмите HTML, CSS и JS прямо в браузере — без сборщика и без отправки на сервер.
               </Typography>
             </div>
 
@@ -106,37 +102,22 @@ export default function ShortcodePage() {
           <AudienceCards cards={[
             {
               title: "Email-верстальщики",
-              description: "Компрессор убирает из HTML-письма комментарии, пробельные символы и необязательные атрибуты. Структура и вёрстка сохраняются, а объём кода сокращается.",
-              points: [
-                { icon: <IconPointScissors />, text: "Убирает всё, что не влияет на отображение" },
-                { icon: <IconPointLayers />, text: "Сохраняет структуру и вёрстку письма" },
-                { icon: <IconPointPackage />, text: "Сокращает вес HTML перед отправкой" },
-              ],
+              description: "HTML-письмо нужно сжать перед отправкой, чтобы не упереться в лимиты почтовых клиентов. Компрессор уберёт лишнее, не трогая структуру и вёрстку.",
               imageSrc: "/images/shortcode/audience_1.png",
             },
             {
               title: "Фронтенд-разработчики",
-              description: "Компрессор принимает код и возвращает минифицированную версию прямо в браузере. Подходит для разовых задач, где сборщик или терминал избыточны.",
-              points: [
-                { icon: <IconPointFile />, text: "Минификация одного файла без сборщика" },
-                { icon: <IconPointGlobe />, text: "Работает в браузере — без установки и настройки" },
-                { icon: <IconPointLock />, text: "Код остаётся на вашем устройстве" },
-              ],
+              description: "Минифицировать один файл, когда сборщик и терминал избыточны. Вставьте код в браузер — результат появится без npm и зависимостей.",
               imageSrc: "/images/shortcode/audience_2.png",
             },
             {
               title: "Контент-менеджеры",
-              description: "Компрессор сжимает HTML-виджеты, встраиваемые блоки и сторонние скрипты перед добавлением на сайт. Достаточно вставить код — результат появится автоматически.",
-              points: [
-                { icon: <IconPointWand />, text: "Сжатие кода без технических знаний" },
-                { icon: <IconPointClipboard />, text: "Автоматическая обработка при вставке" },
-                { icon: <IconPointCheck />, text: "Чистый результат для вставки на страницу" },
-              ],
+              description: "Виджеты и сторонние скрипты нужно сжать перед добавлением на сайт. Вставьте код — результат появится сам, технические знания и сборщики не нужны.",
               imageSrc: "/images/shortcode/audience_3.png",
             },
             {
               title: "Все остальные",
-              description: "Компрессор очищает HTML, CSS и JS от лишнего за секунды. Код обрабатывается в браузере и не передаётся на сторонний сервер.",
+              description: "Очистите HTML, CSS или JS от лишнего за секунды. Код обрабатывается в браузере и не передаётся на сторонний сервер.",
               imageSrc: "/images/shortcode/audience_4.png",
             },
           ]} />
@@ -162,53 +143,33 @@ export default function ShortcodePage() {
             Возможности сервиса
           </Typography>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "60px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <FeatureHighlight
-              title="Код не покидает ваш браузер"
+              title="Приватность"
               paragraphs={[
-                "Минификация выполняется полностью в браузере. Код не передаётся по сети, не сохраняется на сервере, не попадает в логи."
+                "Минификация выполняется полностью в браузере. Код не передаётся по сети, не сохраняется на сервере и не попадает в логи.",
               ]}
               imageSrc="/images/shortcode/features_1.jpg"
-              screenshotCaption="Визуал — схема «код → браузер → результат», без сервера"
+              screenshotCaption="Визуал — приватность"
             />
             <FeatureHighlight
-              title="HTML, CSS и JS без переключения между инструментами"
+              title="Три языка в одном интерфейсе"
               paragraphs={[
-                "Три вкладки — три независимых редактора. Переключение не сбрасывает данные. Подсветка синтаксиса работает в обоих полях и переключается вместе с вкладкой."
+                "Три вкладки — три независимых редактора. Переключение не сбрасывает данные. Подсветка синтаксиса работает в обоих полях и переключается вместе с вкладкой.",
               ]}
               imageSrc="/images/shortcode/features_2.jpg"
               screenshotCaption="Визуал — три вкладки с разным кодом"
               reverse
             />
             <FeatureHighlight
-              title="Результат появляется сразу при вставке"
+              title="Мгновенная обработка"
               paragraphs={[
-                "Кнопки «Сжать» нет — результат генерируется автоматически. Статистика (размер до, после и процент экономии) обновляется вместе с результатом."
+                "Кнопки «Сжать» нет — результат генерируется автоматически. Статистика (размер до, после и процент экономии) обновляется вместе с результатом.",
               ]}
               imageSrc="/images/shortcode/features_3.jpg"
               screenshotCaption="Визуал — автообработка, статистика"
             />
           </div>
-
-          <FeatureGrid
-            features={[
-              {
-                icon: <IconCode />,
-                title: "Без регистрации",
-                text: "Открываете страницу и сразу работаете. Никаких аккаунтов и паролей.",
-              },
-              {
-                icon: <IconBolt />,
-                title: "Без ограничений по размеру кода",
-                text: "Вставляйте фрагменты любого объёма. Обработка происходит на вашем устройстве.",
-              },
-              {
-                icon: <IconFree />,
-                title: "Бесплатно",
-                text: "Без лимитов и скрытых условий.",
-              }
-            ]}
-          />
         </Section>
 
         {/* CTA */}

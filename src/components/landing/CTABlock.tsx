@@ -29,8 +29,8 @@ export default function CTABlock({ bannerSrc }: CTABlockProps) {
               opacity: 0.8,
             }}
           >
-            Конструктор email-рассылок, генератор баннеров, генератор
-            презентаций и&nbsp;другие инструменты для&nbsp;маркетинга и&nbsp;коммуникаций.
+            Рассылки, презентации, баннеры, статьи, формы для&nbsp;сбора данных
+            и&nbsp;другие инструменты для&nbsp;маркетинга и&nbsp;коммуникаций&nbsp;&mdash; в&nbsp;одной платформе.
           </p>
           {bannerSrc ? (
             <img
@@ -58,7 +58,7 @@ export default function CTABlock({ bannerSrc }: CTABlockProps) {
             />
           )}
           <Button variant="white" size="m" href="https://app.letteros.com">
-            Попробовать Letteros&nbsp;&rarr;
+            Попробовать Letteros
           </Button>
         </div>
       </Container>

@@ -4,12 +4,10 @@ import { Footer } from "@/src/components/shared/Footer";
 import { Container } from "@/src/components/layout/Container";
 import { Typography } from "@/src/components/ui/Typography";
 import { HeroTabs } from "@/src/components/shorturl/HeroTabs";
-import { IconFree, IconUserCheck, IconTimer, IconEnvelope, IconMegaphone, IconPencil, IconPerson, IconPointButton, IconPointSparkle, IconPointShield, IconPointCompress, IconPointStar, IconPointLink, IconPointEye, IconPointPhone, IconPointPrint } from "@/src/components/ui/icons";
 import { colors } from "@/tokens";
 import Section from "@/src/components/landing/Section";
 import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
-import FeatureGrid from "@/src/components/landing/FeatureGrid";
 import CTABlock from "@/src/components/landing/CTABlock";
 import AudienceCards from "@/src/components/landing/AudienceCards";
 
@@ -30,7 +28,7 @@ const howSteps = [
     id: "paste",
     label: "Вставьте URL",
     description:
-      "Скопируйте любой адрес и вставьте в поле — страницу сайта, документ, ссылку с UTM-параметрами. Сервис принимает адреса любой длины и автоматически проверяет их доступность перед сокращением.",
+      "Скопируйте любой адрес и вставьте в поле — страницу сайта, документ, ссылку с UTM-параметрами. Сервис принимает адреса любой длины и проверяет их доступность перед сокращением.",
     screenshotCaption: "Скриншот формы с вставленной ссылкой",
     imageSrc: "/images/shorturl/howto_1.jpg",
   },
@@ -38,7 +36,7 @@ const howSteps = [
     id: "customize",
     label: "Настройте под себя",
     description:
-      "Задайте тематическое окончание ссылки, если хотите сделать адрес осмысленным. Отключите проверку доступности, если уверены в ссылке или не хотите лишних запросов к вашему серверу.",
+      "Задайте своё окончание адреса, чтобы ссылка читалась и запоминалась. Отключите проверку доступности, если уверены в ссылке или не хотите лишних запросов к серверу.",
     screenshotCaption: "Скриншот настроек — чекбоксы, поле кастомного слага",
     imageSrc: "/images/shorturl/howto_2.jpg",
   },
@@ -46,10 +44,10 @@ const howSteps = [
     id: "copy",
     label: "Скопируйте результат",
     description:
-      "Короткая ссылка готова. Скопируйте её одной кнопкой. Дата деактивации видна сразу — ссылка работает 90 дней с момента создания.",
+      "Короткая ссылка готова — скопируйте её одной кнопкой и поставьте в письмо, пост или макет. Срок действия — 90 дней.",
     screenshotCaption: "Скриншот результата — короткая ссылка + кнопка копирования",
     imageSrc: "/images/shorturl/howto_3.jpg",
-  }
+  },
 ];
 
 export default function ShortUrlPage() {
@@ -80,11 +78,9 @@ export default function ShortUrlPage() {
                 level="body"
                 as="p"
                 color="rgba(255,255,255,0.7)"
-                style={{ maxWidth: "480px", margin: "0 auto" }}
+                style={{ maxWidth: "640px", margin: "0 auto" }}
               >
-                Превращает любой длинный адрес в короткую ссылку.
-                <br />
-                Кастомный слаг, QR-код и проверка URL.
+                Получите короткий адрес с понятным окончанием, QR-код и проверку ссылки за одно действие.
               </Typography>
             </div>
 
@@ -106,37 +102,22 @@ export default function ShortUrlPage() {
           <AudienceCards cards={[
             {
               title: "Email-маркетологи",
-              description: "Короткая ссылка с понятным окончанием выглядит профессионально в тексте письма и не вызывает настороженности у получателя. Подписчик видит осмысленный адрес, а не случайный набор символов.",
-              points: [
-                { icon: <IconPointButton />, text: "Аккуратный адрес в тексте и кнопках рассылки" },
-                { icon: <IconPointSparkle />, text: "Понятное окончание вместо случайных символов" },
-                { icon: <IconPointShield />, text: "Доверие получателя к ссылке в письме" },
-              ],
+              description: "Длинные адреса с UTM-метками выглядят подозрительно и ломают вёрстку. Получите короткий адрес с понятным окончанием — он не вызовет настороженности у получателя и аккуратно ляжет в текст рассылки.",
               imageSrc: "/images/shorturl/audience_1.png",
             },
             {
               title: "SMM-специалисты",
-              description: "Короткий адрес с собственным окончанием экономит символы в любом тексте — от поста до описания профиля. Ссылка становится запоминаемой и сообщает суть ещё до перехода.",
-              points: [
-                { icon: <IconPointCompress />, text: "Экономит символы в постах, описаниях и комментариях" },
-                { icon: <IconPointStar />, text: "Собственное окончание делает ссылку узнаваемой" },
-                { icon: <IconPointLink />, text: "Один адрес для всех площадок" },
-              ],
+              description: "Длинная ссылка съедает символы и теряется в потоке. Сократите адрес и задайте собственное окончание — он будет узнаваемым и сообщит суть ещё до перехода.",
               imageSrc: "/images/shorturl/audience_2.png",
             },
             {
               title: "Дизайнеры и редакторы",
-              description: "Короткий адрес не отвлекает от содержания макета, презентации или документа. Его можно разместить на визитке, слайде или в буклете — и он останется читаемым.",
-              points: [
-                { icon: <IconPointEye />, text: "Читаемая ссылка на слайде или визитке" },
-                { icon: <IconPointPhone />, text: "Можно продиктовать по телефону или запомнить" },
-                { icon: <IconPointPrint />, text: "Не нарушает оформление печатных материалов" },
-              ],
+              description: "Длинный URL не помещается на слайд, визитку или в буклет. Сократите его до читаемой строки — её можно разместить в макете или поставить на печать.",
               imageSrc: "/images/shorturl/audience_3.png",
             },
             {
               title: "Все остальные",
-              description: "Сокращатель превращает любую ссылку в короткий и понятный адрес за одно действие. Удобно для отправки в чат, вставки в комментарий или устного диктования.",
+              description: "Когда длинная ссылка не помещается в чат, мешает в документе или просто выглядит неаккуратно. Сократите её за секунды — без аккаунта, лимитов и условий.",
               imageSrc: "/images/shorturl/audience_4.png",
             },
           ]} />
@@ -162,55 +143,33 @@ export default function ShortUrlPage() {
             Возможности сервиса
           </Typography>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "60px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <FeatureHighlight
-              title="Кастомный слаг"
+              title="Понятный адрес"
               paragraphs={[
-                "Кастомный слаг заменяет случайный код на осмысленное слово. Вместо <code style=\"background:#F1F1F1;padding:2px 6px;border-radius:4px;font-size:14px\">letteros.com/s/x7k9m2</code> вы получаете <code style=\"background:#F1F1F1;padding:2px 6px;border-radius:4px;font-size:14px\">letteros.com/s/price-list</code> — такой адрес можно разместить на слайде или продиктовать по телефону. Допустимые символы — латиница, цифры и дефис. Длина — от трёх до тридцати символов."
+                "Задайте окончание ссылки сами — и адрес перестанет выглядеть случайным набором символов. <code style=\"background:#F1F1F1;padding:2px 6px;border-radius:4px;font-size:14px\">letteros.com/s/price-list</code> читается, запоминается и нормально смотрится на визитке, слайде или в буклете. Допустимы латиница, цифры и дефис, длина — от 3 до 30 символов.",
               ]}
               imageSrc="/images/shorturl/features_1.jpg"
               screenshotCaption="Визуал — пример кастомного слага"
             />
             <FeatureHighlight
-              title="Генератор QR-кода для любой ссылки"
+              title="QR-код"
               paragraphs={[
-                "QR-код нужен там, где ссылку нельзя нажать: на печатных материалах, в офлайн-рекламе, на упаковке. Генератор работает на отдельной вкладке — вставьте любую ссылку и скачайте QR-код в PNG."
-                
+                "QR-код нужен там, где ссылку нельзя нажать: на печатных материалах, в офлайн-рекламе, на упаковке. Генератор работает на отдельной вкладке — вставьте адрес и скачайте код в PNG.",
               ]}
               imageSrc="/images/shorturl/features_2.jpg"
               screenshotCaption="Визуал — пример QR-кода"
               reverse
             />
             <FeatureHighlight
-              title="Проверка доступности перед сокращением"
+              title="Проверка URL"
               paragraphs={[
-                "Сервис проверяет, что страница по указанному адресу существует и отвечает. Это защищает от распространения нерабочих ссылок. Проверка включена по умолчанию, но её можно отключить одним чекбоксом."
-                
+                "Сервис проверяет, что страница по указанному адресу существует и отвечает. Это защищает от распространения нерабочих ссылок. Проверка включена по умолчанию, но её можно отключить одним чекбоксом.",
               ]}
               imageSrc="/images/shorturl/features_3.jpg"
               screenshotCaption="Визуал — пример проверки URL"
             />
           </div>
-
-          <FeatureGrid
-            features={[
-              {
-                icon: <IconUserCheck />,
-                title: "Без регистрации",
-                text: "Открываете страницу и сразу работаете. Никаких аккаунтов и паролей.",
-              },
-              {
-                icon: <IconTimer />,
-                title: "Срок 90 дней",
-                text: "Дата деактивации видна сразу после создания ссылки.",
-              },
-              {
-                icon: <IconFree />,
-                title: "Бесплатно",
-                text: "Без лимитов и скрытых условий.",
-              }
-            ]}
-          />
         </Section>
 
         {/* CTA */}
