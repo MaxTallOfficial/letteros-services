@@ -10,6 +10,8 @@ import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
 import CTABlock from "@/src/components/landing/CTABlock";
 import AudienceCards from "@/src/components/landing/AudienceCards";
+import { FAQ } from "@/src/components/landing/FAQ";
+import { SchemaOrg } from "@/src/components/seo/SchemaOrg";
 
 export const metadata: Metadata = {
   title: "Letteros Typograph — типограф онлайн",
@@ -50,9 +52,32 @@ const howSteps = [
   },
 ];
 
+
+const faqItems = [
+  { question: "Какие правила типографики применяет сервис?", answer: "Полный набор для русского языка: замена прямых кавычек на «ёлочки», расстановка тире вместо дефисов между словами, неразрывные пробелы после предлогов и инициалов, удаление лишних пробелов." },
+  { question: "Куда уходит мой текст при обработке?", answer: "Никуда. Типограф работает в браузере на вашем устройстве. Текст не передаётся по сети, не сохраняется на сервере и не попадает в логи." },
+  { question: "Что такое висячий предлог и почему его нужно убирать?", answer: "Это короткое слово (предлог, союз) в конце строки, оторванное от своего существительного. Типограф ставит после таких слов неразрывный пробел — слово переносится на следующую строку вместе с парой." },
+  { question: "Сохраняет ли типограф разметку текста?", answer: "Простое форматирование (абзацы, переносы строк) сохраняется. HTML-теги и markdown-разметка остаются нетронутыми — обрабатывается только сам текст." },
+  { question: "Можно ли применить только часть правил, например только кавычки?", answer: "Сейчас типограф применяет полный набор правил за одно действие. Точечная настройка не предусмотрена — это сделано ради скорости и предсказуемости результата." },
+  { question: "Нужна ли регистрация?", answer: "Нет. Откройте страницу, вставьте текст и получите обработанный результат. Аккаунты и пароли не требуются." },
+  { question: "Бесплатно ли это?", answer: "Да. Сервис бесплатный, без лимитов на длину текста и количество обработок. Нет скрытых условий и платных тарифов." },
+];
+
 export default function TypographPage() {
+  const appSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Letteros Typograph — типограф онлайн",
+    url: "https://letteros.com/typograph",
+    description: "Расставит кавычки, тире и неразрывные пробелы по правилам русской типографики. Текст обрабатывается в браузере.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "All",
+    offers: { "@type": "Offer", price: 0, priceCurrency: "RUB" },
+  };
+
   return (
     <>
+      <SchemaOrg data={appSchema} />
       <Header />
 
       <main style={{ paddingTop: "50px" }}>
@@ -170,6 +195,11 @@ export default function TypographPage() {
               screenshotCaption="Визуал — приватность"
             />
           </div>
+        </Section>
+
+        {/* FAQ */}
+        <Section bg="alt">
+          <FAQ items={faqItems} />
         </Section>
 
         {/* CTA */}

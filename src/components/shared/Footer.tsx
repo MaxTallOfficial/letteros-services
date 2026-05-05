@@ -120,8 +120,10 @@ export function Footer() {
             <div className="footer-nav-col">
               <div style={titleStyle}>Бесплатные сервисы</div>
               <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-                <NavLink href="/shorturl/">Сокращение ссылок</NavLink>
-                <NavLink href="/shortcode/">Компрессор кода</NavLink>
+                <NavLink href="/shorturl/">Сокращатель ссылок</NavLink>
+                <NavLink href="/html-minifier/">Компрессор HTML</NavLink>
+                <NavLink href="/css-minifier/">Компрессор CSS</NavLink>
+                <NavLink href="/js-minifier/">Компрессор JavaScript</NavLink>
                 <NavLink href="/typograph/">Типограф</NavLink>
               </ul>
             </div>

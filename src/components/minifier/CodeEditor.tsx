@@ -6,9 +6,10 @@ import "prismjs/components/prism-markup";
 import "prismjs/components/prism-css";
 import "prismjs/components/prism-javascript";
 import { colors } from "@/tokens";
-import type { TabId } from "./TabSwitcher";
 
-const langMap: Record<TabId, Prism.Grammar> = {
+export type MinifierLang = "html" | "css" | "js";
+
+const langMap: Record<MinifierLang, Prism.Grammar> = {
   html: Prism.languages.markup,
   css: Prism.languages.css,
   js: Prism.languages.javascript,
@@ -17,7 +18,7 @@ const langMap: Record<TabId, Prism.Grammar> = {
 interface CodeEditorProps {
   value: string;
   onChange: (value: string) => void;
-  tab: TabId;
+  tab: MinifierLang;
   disabled?: boolean;
   onPaste?: () => void;
 }

@@ -6,11 +6,11 @@ import "prismjs/components/prism-markup";
 import "prismjs/components/prism-css";
 import "prismjs/components/prism-javascript";
 import { colors } from "@/tokens";
-import type { TabId } from "./TabSwitcher";
+import type { MinifierLang } from "./CodeEditor";
 
 interface CodeOutputProps {
   value: string;
-  tab: TabId;
+  tab: MinifierLang;
   loading?: boolean;
 }
 

@@ -10,6 +10,8 @@ import StepSwitcher from "@/src/components/landing/StepSwitcher";
 import FeatureHighlight from "@/src/components/landing/FeatureHighlight";
 import CTABlock from "@/src/components/landing/CTABlock";
 import AudienceCards from "@/src/components/landing/AudienceCards";
+import { FAQ } from "@/src/components/landing/FAQ";
+import { SchemaOrg } from "@/src/components/seo/SchemaOrg";
 
 export const metadata: Metadata = {
   title: "Letteros Short URL — сокращатель ссылок",
@@ -50,9 +52,32 @@ const howSteps = [
   },
 ];
 
+
+const faqItems = [
+  { question: "Сколько стоит сокращение ссылок?", answer: "Сервис бесплатный, без скрытых условий. Нет лимитов на количество ссылок, ограничений по длине исходного URL или по числу переходов." },
+  { question: "Нужна ли регистрация, чтобы сократить ссылку?", answer: "Нет. Откройте страницу, вставьте адрес и получите короткую ссылку. Аккаунт не требуется ни для сокращения, ни для генерации QR-кода." },
+  { question: "Сколько живёт короткая ссылка?", answer: "90 дней с момента создания. Дата деактивации видна в интерфейсе сразу после получения короткого адреса — её можно скопировать вместе со ссылкой." },
+  { question: "Можно ли отредактировать ссылку после создания?", answer: "Нет, отредактировать или продлить уже созданную ссылку нельзя. Если нужно изменить адрес назначения или окончание, создайте новую короткую ссылку." },
+  { question: "Что такое окончание ссылки и зачем оно нужно?", answer: "Окончание — это часть адреса после <code>/s/</code>. По умолчанию сервис ставит случайный код, но вы можете задать своё слово: <code>letteros.com/s/price-list</code>. Такая ссылка читается и запоминается." },
+  { question: "Как сделать QR-код из ссылки?", answer: "Откройте вкладку «QR-код», вставьте любой адрес и скачайте готовый QR в формате PNG. Размещайте на печатных материалах, в офлайн-рекламе и на упаковке." },
+  { question: "Безопасно ли пользоваться сервисом?", answer: "Сервис проверяет, что страница по указанному адресу существует и отвечает — это защищает от распространения нерабочих ссылок. Проверку можно отключить одной галочкой." },
+];
+
 export default function ShortUrlPage() {
+  const appSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Letteros Short URL — сокращатель ссылок",
+    url: "https://letteros.com/shorturl",
+    description: "Бесплатный сокращатель ссылок: своё окончание, QR-код и проверка URL за одно действие. Без регистрации.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "All",
+    offers: { "@type": "Offer", price: 0, priceCurrency: "RUB" },
+  };
+
   return (
     <>
+      <SchemaOrg data={appSchema} />
       <Header />
 
       <main style={{ paddingTop: "50px" }}>
@@ -170,6 +195,11 @@ export default function ShortUrlPage() {
               screenshotCaption="Визуал — пример проверки URL"
             />
           </div>
+        </Section>
+
+        {/* FAQ */}
+        <Section bg="alt">
+          <FAQ items={faqItems} />
         </Section>
 
         {/* CTA */}

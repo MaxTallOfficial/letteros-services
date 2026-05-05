@@ -2,13 +2,17 @@
 
 ## Описание проекта
 
-Мультисервисный Next.js проект для сайта letteros.com. Три сервиса:
+Мультисервисный Next.js проект для сайта letteros.com. Пять сервисов:
 
 | Сервис | Статус | Роут |
 |---|---|---|
 | **shorturl** | Реализован | `/shorturl/` |
-| **shortcode** | Реализован | `/shortcode/` |
+| **html-minifier** | Реализован | `/html-minifier/` |
+| **css-minifier** | Реализован | `/css-minifier/` |
+| **js-minifier** | Реализован | `/js-minifier/` |
 | **typograph** | Реализован | `/typograph/` |
+
+> Старая универсальная страница `/shortcode` удалена. Настроен 301-редирект `/shortcode → /html-minifier` в `next.config.mjs`.
 
 Репозиторий: https://gitlab.letteros.com/maxtall/letteros-sevices
 
@@ -64,14 +68,14 @@
 ### 6. Очистка просроченных ссылок
 Запускается при каждом POST `/api/shorten` — удаляет записи с истёкшим `expiresAt`.
 
-### 7. shortcode и typograph — клиентская автообработка
-Оба сервиса не имеют кнопки «Обработать». Обработка запускается:
+### 7. Минификаторы и typograph — клиентская автообработка
+Все три страницы минификаторов (`/html-minifier`, `/css-minifier`, `/js-minifier`) и typograph не имеют кнопки «Обработать». Обработка запускается:
 - Мгновенно при вставке (paste event → `isPasteRef = true` → delay=0)
 - С debounce 500мс при ручном вводе
-Минификаторы (html-minifier-terser, csso, terser) lazy-loaded через dynamic import.
+Минификаторы (html-minifier-terser, csso, terser) lazy-loaded через dynamic import в `MinifierTool` (выбор по prop `language`).
 typograf инициализируется как синглтон при первом вызове.
 
-### 8. shortcode и typograph — горизонтальный layout
+### 8. Минификаторы и typograph — горизонтальный layout
 Два поля рядом (grid 1fr 1fr) на десктопе, в колонку на мобильном (≤767px).
 Медиазапросы через `<style>` тег с CSS-классом (паттерн из CodeEditor).
 
@@ -89,14 +93,18 @@ Raleway по умолчанию использует oldstyle-цифры, кот
 (Стандартный UIKit имеет рамку, для утилитарных кнопок сервисов убрана.)
 
 ### 12. Лендинговые секции — landing-компоненты
-Все три страницы используют shared landing-компоненты из `src/components/landing/`:
+Все пять страниц используют shared landing-компоненты из `src/components/landing/`:
 - `Section` — обёртка секции с чередованием фонов (white/alt/dark)
-- `StepSwitcher` — «Как это работает», вертикальные переключатели слева + контент справа
-- `FeatureHighlight` — 50/50 layout текст + визуал-заглушка (чередование сторон)
-- `FeatureGrid` — сетка фич без карточных обвёсок (иконка + заголовок + текст)
-- `ScreenshotPlaceholder` — серый placeholder 16:9 с подписью (будут заменены на реальные скриншоты)
+- `StepSwitcher` — «Как это работает», авто-переключение шагов 8с с прогресс-баром
+- `AudienceCards` — «Для кого» 4 карточки 35/65 (картинка + текст), без буллетов
+- `FeatureHighlight` — 50/50 layout текст + изображение (чередование сторон)
+- `ScreenshotPlaceholder` — серый placeholder/реальное изображение
+- `FAQ` — аккордеон с 7 вопросами + Schema.org FAQPage микроразметка
 - `CTABlock` — кросс-промо Letteros перед футером (кнопка → app.letteros.com)
 - `SectionTabs` — генерик pill-табы (используется в hero shorturl)
+
+И SEO-обёртка из `src/components/seo/`:
+- `SchemaOrg` — JSON-LD wrapper для Schema.org микроразметки (WebApplication на уровне страницы, FAQPage внутри FAQ)
 
 ### 13. shorturl — две вкладки в hero
 Hero shorturl содержит SectionTabs с двумя вкладками:
@@ -113,9 +121,13 @@ letteros-sevices/
 │   ├── layout.tsx               ← Raleway font, lang="ru"
 │   ├── page.tsx                 ← корневая страница (дефолтный шаблон)
 │   ├── shorturl/
-│   │   └── page.tsx             ← страница сервиса сокращения ссылок
-│   ├── shortcode/
-│   │   └── page.tsx             ← страница минификатора кода
+│   │   └── page.tsx             ← страница сокращателя ссылок
+│   ├── html-minifier/
+│   │   └── page.tsx             ← страница компрессора HTML
+│   ├── css-minifier/
+│   │   └── page.tsx             ← страница компрессора CSS
+│   ├── js-minifier/
+│   │   └── page.tsx             ← страница компрессора JavaScript
 │   ├── typograph/
 │   │   └── page.tsx             ← страница типографа
 │   ├── s/[code]/
@@ -148,13 +160,12 @@ letteros-sevices/
 │   │   │   ├── ShortenForm.tsx  ← форма + результат (QR удалён)
 │   │   │   ├── QRGenerator.tsx  ← генератор QR-кодов (отдельная вкладка)
 │   │   │   └── HeroTabs.tsx     ← переключатель вкладок в hero
-│   │   ├── shortcode/
-│   │   │   ├── CompressorTool.tsx  ← "use client", автообработка, 2-колоночный layout
-│   │   │   ├── TabSwitcher.tsx     ← переключатель HTML/CSS/JS
+│   │   ├── minifier/
+│   │   │   ├── MinifierTool.tsx    ← "use client", single-language компрессор (prop language: html/css/js)
+│   │   │   ├── MinifierLinks.tsx   ← кнопки-карточки на 2 другие страницы минификаторов
 │   │   │   ├── CodeEditor.tsx      ← поле ввода с подсветкой (react-simple-code-editor)
 │   │   │   ├── CodeOutput.tsx      ← read-only результат с подсветкой (prismjs)
-│   │   │   ├── CompressionStats.tsx
-│   │   │   └── ActionButtons.tsx   ← (не используется, оставлен)
+│   │   │   └── CompressionStats.tsx
 │   │   └── typograph/
 │   │       ├── TypographTool.tsx   ← "use client", автообработка, 2-колоночный layout
 │   │       ├── TextInput.tsx       ← styled textarea + кнопка «Очистить»
@@ -191,8 +202,21 @@ npm run start   # запуск production-сервера
 - `/s/{code}` — редирект на оригинальный URL (301)
 - `/api/shorten` — POST API создания короткой ссылки
 
-### shortcode
-- `/shortcode/` — минификатор HTML/CSS/JS, два поля рядом, автообработка при вводе
+### Минификаторы (компрессоры кода)
+- `/html-minifier/` — компрессор HTML (html-minifier-terser)
+- `/css-minifier/` — компрессор CSS (csso)
+- `/js-minifier/` — компрессор JavaScript (terser)
+
+Каждый минификатор — отдельная страница, два поля рядом, автообработка при вводе. Под полем результата — две кнопки-виджета на другие минификаторы (`MinifierLinks`).
+
+Старая объединённая страница `/shortcode` удалена. В `next.config.mjs` настроен 301-редирект `/shortcode → /html-minifier` (HTML самый частый запрос).
 
 ### typograph
 - `/typograph/` — типограф для русского текста, два поля рядом, автообработка при вводе
+
+### SEO
+
+Все 5 страниц используют:
+- `WebApplication` JSON-LD на уровне страницы
+- `FAQPage` JSON-LD внутри блока FAQ
+Компонент-обёртка: `src/components/seo/SchemaOrg.tsx`.
